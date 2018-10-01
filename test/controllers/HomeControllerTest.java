@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author ariannascheidell
+ * @author Paul
  */
 public class HomeControllerTest {
     
@@ -36,7 +36,7 @@ public class HomeControllerTest {
         HomeController instance = new HomeController();
         instance.viewMedicalRecord();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -48,7 +48,7 @@ public class HomeControllerTest {
         HomeController instance = new HomeController();
         instance.viewMeds();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -60,7 +60,7 @@ public class HomeControllerTest {
         HomeController instance = new HomeController();
         instance.viewMeetings();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -72,7 +72,7 @@ public class HomeControllerTest {
         HomeController instance = new HomeController();
         instance.viewSearch();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }

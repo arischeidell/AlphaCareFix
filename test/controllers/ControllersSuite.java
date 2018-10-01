@@ -6,7 +6,9 @@
 package controllers;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -15,8 +17,16 @@ import org.junit.runners.Suite;
  * @author pss5205
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({controllers.MeetingControllerTest.class, controllers.MedicalRecordControllerTest.class, controllers.UserControllerTest.class, controllers.MedicationControllerTest.class, controllers.SearchControllerTest.class})
+@Suite.SuiteClasses({MedicationControllerTest.class, MeetingControllerTest.class, MedicalRecordControllerTest.class, HomeControllerTest.class, LoginControllerTest.class, SearchControllerTest.class, UserControllerTest.class})
 public class ControllersSuite {
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
 
     @Before
     public void setUp() throws Exception {

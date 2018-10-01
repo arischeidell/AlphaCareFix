@@ -20,16 +20,18 @@ public class LoginController {
         ul = new UserList();
     }
     
-    public void addUser(){
+    public UserController addUser(){
         userController = new UserController();
+        return userController;
     }
     
-    public void authenticate(String username, char[] pw) {
+    public boolean authenticate(String username, char[] pw) {
         boolean auth = ul.authenticate(username, pw);
         if (auth) {
             homeController = new HomeController();
+            return true;
         } else { //incorrect username/password, try again
-            
+            return false;
         }
     }
 }
