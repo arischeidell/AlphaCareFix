@@ -5,7 +5,12 @@
  */
 package controllers;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import models.UserList;
+import models.UserStore;
 
 /**
  *
@@ -15,6 +20,10 @@ public class LoginController {
     private UserList ul;
     private UserController userController;
     private HomeController homeController;
+    @FXML
+    private TextField userNameTextField;
+    @FXML
+    private PasswordField passwordField;
     
     public LoginController() {
         ul = new UserList();
@@ -34,4 +43,31 @@ public class LoginController {
             return false;
         }
     }
+    
+    @FXML
+    private void onForgotPasswordButtonAction(ActionEvent event){
+        //Call forgot password button controller and launch new UI
+    }
+    
+    @FXML
+    private void onNewUserButtonAction(ActionEvent event){
+        //Call new user ui and launch new UI
+    }
+    
+    @FXML
+    private void onLoginButtonAction(ActionEvent event){
+        
+        if(UserStore.getInstance().authenticateUser(userNameTextField.getText(), passwordField.getText())){
+            requestHomeController();
+        }
+        else{
+            System.out.println("Login Failed");
+        }
+ 
+    }
+    
+    private void requestHomeController(){
+        System.out.println("Home Controller Started");
+    }
+    
 }
