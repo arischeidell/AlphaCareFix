@@ -52,7 +52,13 @@ public class UserStore {
         return userList.stream().filter((u) -> (u.getUsername().equals(username))).anyMatch((u) -> (Arrays.equals(u.getPassword(), password.toCharArray())));
     }
     
+    public User getCurrentlyAuthenticatedUser(){
+        return this.currentlyAuthenticatedUser;
+    }
     
+    public void clearAuthenticatedUser(){
+        this.currentlyAuthenticatedUser = null;
+    }
     public void loadUserList() {
         Gson gson = new Gson();
 
