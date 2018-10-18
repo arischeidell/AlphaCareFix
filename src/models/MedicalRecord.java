@@ -17,12 +17,25 @@ public class MedicalRecord {
     private Date lastUpdated;
     private String recordDescription;
     private ArrayList<Medication> meds;
+    private ArrayList<Vaccine> vacs;
 
     public MedicalRecord() {
         this.creation = new Date();
         this.recordDescription = "";
         this.meds = new ArrayList();
+        this.vacs = initVacs();
     }
+    
+    public ArrayList<Vaccine> initVacs() {
+        ArrayList<Vaccine> vacs = new ArrayList();
+        vacs.add(new Vaccine ("Flu"));
+        vacs.add(new Vaccine ("MMR")); //Measles, Mumps, Rubella
+        vacs.add(new Vaccine ("Tetanus"));
+        vacs.add(new Vaccine ("Chickenpox"));
+        
+        return vacs;
+    }
+    
     /**
      * Gets the creation date of a medical record.
      * @return createDate A date representing the creation of the medical record.
