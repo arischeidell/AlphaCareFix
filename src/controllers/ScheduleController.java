@@ -140,5 +140,12 @@ public class ScheduleController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void goHome(ActionEvent event) {
+        this.closeScheduleUI();
+        HomeController homeController = new HomeController();
+        homeController.startHomeUI();
+    }
     
 }

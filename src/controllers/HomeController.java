@@ -96,7 +96,7 @@ public class HomeController implements Initializable{
     
     @FXML
     private void onAppointmentSchedulerButtonAction(ActionEvent event){
-        //this.closeHomeUI();
+        this.closeHomeUI();
         ScheduleController sc = new ScheduleController();
         sc.showScheduleUI();
     }
