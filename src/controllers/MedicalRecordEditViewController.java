@@ -20,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Patient;
+import models.UserStore;
 
 /**
  * FXML Controller class
@@ -27,6 +29,7 @@ import javafx.stage.Stage;
  * @author ariannascheidell
  */
 public class MedicalRecordEditViewController implements Initializable {
+
     @FXML
     private TextField nameField;
     @FXML
@@ -37,37 +40,67 @@ public class MedicalRecordEditViewController implements Initializable {
     private TextField weightField;
     @FXML
     private Button saveButton;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
-    public void closeEditUI(){
+            Patient authU = (Patient)UserStore.getInstance().getCurrentlyAuthenticatedUser();
+            this.ageField.setText(Integer.toString(authU.getAge()));
+            this.weightField.setText(Double.toString(authU.getWeight()));
+            this.heightField.setText(Double.toString(authU.getHeight()));
+            this.nameField.setText(authU.getFirstName() + " " + authU.getLastName());
+    }
+
+    public void closeEditUI() {
         Stage stage = (Stage) this.nameField.getScene().getWindow();
         stage.close();
     }
-    
-    public void showEditUI(){
-         try{
+
+    public void showEditUI() {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordEditView.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("AlphaCare");
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root1));
             stage.show();
-          } catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
     private void onSaveButtonAction(ActionEvent event) {
+           Patient authPatient = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
+        if (this.tryParseInt(this.ageField.getText())) {
+            authPatient.setAge(Integer.parseInt(this.ageField.getText()));
+        }
+        if (this.tryParseInt(this.heightField.getText())) {
+            authPatient.setHeight(Double.parseDouble(this.heightField.getText()));
+        }
+        if (this.tryParseInt(this.weightField.getText())) {
+            authPatient.setWeight(Double.parseDouble(this.weightField.getText()));
+        }
+        if (this.nameField.getText().split(" ").length > 1) {
+            authPatient.setFirstName(this.nameField.getText().split(" ")[0]);
+            authPatient.setLastName(this.nameField.getText().split(" ")[1]);
+        }
+        
         this.closeEditUI();
         MedicalRecordController mc = new MedicalRecordController();
         mc.showMedicalRecordUI();
+     
+    }
+
+    private boolean tryParseInt(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

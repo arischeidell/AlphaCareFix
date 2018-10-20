@@ -15,14 +15,16 @@ import javafx.beans.property.SimpleStringProperty;
 public class ScheduleTableEntry {
    private final SimpleStringProperty physicianName = new SimpleStringProperty("");
    private final SimpleStringProperty appointmentDate = new SimpleStringProperty("");
+   private final SimpleStringProperty appointmentDescription = new SimpleStringProperty("");
 
     public ScheduleTableEntry() {
-        this("", new Date());
+        this("", new Date(), "");
     }
  
-    public ScheduleTableEntry(String name, Date appointmentDate) {
+    public ScheduleTableEntry(String name, Date appointmentDate, String appointmentDesc) {
         setPhysicianName(name);
         setAppointmentDate(appointmentDate.toString());
+        this.setAppointmentDescription(appointmentDesc);
         
     }
 
@@ -40,6 +42,13 @@ public class ScheduleTableEntry {
     
     public void setAppointmentDate(String date) {
         appointmentDate.set(date);
+    }
+    
+    public String getAppointmentDescription(){
+        return this.appointmentDescription.get();
+    }
+    public void setAppointmentDescription(String appointmentDesc){
+        this.appointmentDescription.set(appointmentDesc);
     }
     
 

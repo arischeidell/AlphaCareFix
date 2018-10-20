@@ -77,7 +77,8 @@ public class ScheduleController implements Initializable {
         LocalDateTime ldt = LocalDateTime.of(localDate, localTime);
         Date date = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
         String physName = physicianSelect.getSelectionModel().getSelectedItem().toString();
-        ScheduleTableEntry newEntry = new ScheduleTableEntry(physName, date);
+        String appDesc = reasonTextField.getText();
+        ScheduleTableEntry newEntry = new ScheduleTableEntry(physName, date, appDesc);
         scheduledTable.getItems().add(newEntry);
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
         savedScheduleData.add(newEntry);

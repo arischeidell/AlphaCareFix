@@ -34,6 +34,12 @@ public class UserStore {
     private UserStore() {
         userList = new ArrayList<>();
         userList.add(new Patient("testuser", "testpass".toCharArray(), new Address(), "NA"));
+        Patient p1 = (Patient)userList.get(0);
+        p1.setFirstName("John");
+        p1.setLastName("Doe");
+        p1.setAge(55);
+        p1.setHeight(66.5);
+        p1.setWeight(145.3);
     }
     
     public static UserStore getInstance() {
