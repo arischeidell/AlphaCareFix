@@ -26,7 +26,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select a function to get started" />
                         <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="322.0" text="Edit my Profile" />
                         <Button fx:id="appointmentSchedulerButton" mnemonicParsing="false" onAction="#onAppointmentSchedulerButtonAction" prefHeight="63.0" prefWidth="322.0" text="Appointment Scheduler" />
-                        <Button mnemonicParsing="false" onAction="#onRecordViewerButtonAction" prefHeight="63.0" prefWidth="322.0" text="Record Viewer" />
+                        <Button fx:id="recordViewerButton" mnemonicParsing="false" onAction="#onRecordViewerButtonAction" prefHeight="63.0" prefWidth="322.0" text="Record Viewer" />
                         <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="322.0" text="Prescriptions" />
                      </children>
                   </VBox>
