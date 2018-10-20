@@ -17,13 +17,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Patient;
 import models.User;
 import models.UserStore;
-import views.HomeView;
 
 /**
  *
@@ -34,7 +34,6 @@ public class HomeController implements Initializable{
     private MedicationController medController;
     private MeetingController meetingController;
     private SearchController sc;
-    private HomeView homeView;
     @FXML
     private Text patientNameText;
     @FXML
@@ -43,6 +42,8 @@ public class HomeController implements Initializable{
     private Text patientPhoneText;
     @FXML
     private Text currentDateText;
+    @FXML
+    private Button recordViewerButton;
     
     
     public HomeController() {
@@ -99,6 +100,13 @@ public class HomeController implements Initializable{
         this.closeHomeUI();
         ScheduleController sc = new ScheduleController();
         sc.showScheduleUI();
+    }
+    
+    @FXML
+    private void onRecordViewerButtonAction(ActionEvent event) {
+        this.closeHomeUI();
+        MedicalRecordController mc = new MedicalRecordController();
+        mc.showMedicalRecordUI();
     }
     
     @Override

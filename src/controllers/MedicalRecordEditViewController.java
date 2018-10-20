@@ -17,7 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,43 +26,33 @@ import javafx.stage.Stage;
  *
  * @author ariannascheidell
  */
-public class MedicalRecordController implements Initializable {
+public class MedicalRecordEditViewController implements Initializable {
     @FXML
-    private Text nameText;
+    private TextField nameField;
     @FXML
-    private Text ageText;
+    private TextField ageField;
     @FXML
-    private Text heightText;
+    private TextField heightField;
     @FXML
-    private Text weightText;
+    private TextField weightField;
     @FXML
-    private Button profileEditButton;
-    @FXML
-    private Button homeButton;
-    @FXML
-    private Text vac1Text;
-    @FXML
-    private Text vac2Text;
-    @FXML
-    private Text vac3Text;
-    @FXML
-    private Text vac4Text;
-    @FXML
-    private Text visitText;
-
+    private Button saveButton;
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("MedicalRecordController");
+        // TODO
     }    
     
-    public void closeMedicalRecordUI(){
-        Stage stage = (Stage) nameText.getScene().getWindow();
+    public void closeEditUI(){
+        Stage stage = (Stage) this.nameField.getScene().getWindow();
         stage.close();
     }
     
-    public void showMedicalRecordUI(){
+    public void showEditUI(){
          try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordEditView.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -73,18 +63,11 @@ public class MedicalRecordController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
-    private void goHome(ActionEvent event) {
-        this.closeMedicalRecordUI();
-        HomeController homeController = new HomeController();
-        homeController.startHomeUI();
-    }
     
     @FXML
-    private void onEditButtonEvent(ActionEvent event) {
-        this.closeMedicalRecordUI();
-        MedicalRecordEditViewController editController = new MedicalRecordEditViewController();
-        editController.showEditUI();
+    private void onSaveButtonAction(ActionEvent event) {
+        this.closeEditUI();
+        MedicalRecordController mc = new MedicalRecordController();
+        mc.showMedicalRecordUI();
     }
 }
