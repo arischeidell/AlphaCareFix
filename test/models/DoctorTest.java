@@ -17,14 +17,14 @@ import static org.junit.Assert.*;
  * @author pss5205
  */
 public class DoctorTest {
-    
+
     public DoctorTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -38,7 +38,7 @@ public class DoctorTest {
         ArrayList<User> users = new ArrayList();
         Date d = new Date();
         Meeting m = new Meeting(users, d, "");
-        char [] pw = {'a', 'b', 'c'};
+        char[] pw = {'a', 'b', 'c'};
         Doctor instance = new Doctor("test", pw);
         instance.addMeeting(m);
     }
@@ -52,9 +52,9 @@ public class DoctorTest {
         ArrayList<User> users = new ArrayList();
         Date d = new Date();
         Meeting m = new Meeting(users, d, "");
-        char [] pw = {'a', 'b', 'c'};
+        char[] pw = {'a', 'b', 'c'};
         Doctor instance = new Doctor("test", pw);
         instance.removeMeeting(m);
     }
-    
+
 }

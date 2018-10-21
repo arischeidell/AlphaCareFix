@@ -8,10 +8,12 @@ package models;
 import java.util.ArrayList;
 
 /**
- *Model class represents a patient
+ * Model class represents a patient
+ *
  * @author ariannascheidell
  */
-public class Patient extends User{
+public class Patient extends User {
+
     private Address address;
     private String phone;
     private MedicalRecord record;
@@ -46,6 +48,7 @@ public class Patient extends User{
 
     /**
      * Constructor for a patient object.
+     *
      * @param username The patient's username.
      * @param password The patient's password.
      * @param address The patient's address.
@@ -58,7 +61,7 @@ public class Patient extends User{
         this.record = new MedicalRecord();
         this.balance = 0.0;
     }
-    
+
     public Patient() {
         this.address = new Address();
         this.phone = "";
@@ -68,6 +71,7 @@ public class Patient extends User{
 
     /**
      * Gets the address of a patient.
+     *
      * @return An address object representing the patient's address.
      */
     public Address getAddress() {
@@ -76,6 +80,7 @@ public class Patient extends User{
 
     /**
      * Sets the address of a patient.
+     *
      * @param address An address object representing the patient's new address.
      */
     public void setAddress(Address address) {
@@ -84,6 +89,7 @@ public class Patient extends User{
 
     /**
      * Gets the phone number for a patient.
+     *
      * @return A string representing the phone number.
      */
     public String getPhone() {
@@ -92,6 +98,7 @@ public class Patient extends User{
 
     /**
      * Sets the phone number for a patient.
+     *
      * @param phone A string representing the new phone number.
      */
     public void setPhone(String phone) {
@@ -100,6 +107,7 @@ public class Patient extends User{
 
     /**
      * Returns the patient's MedicalRecord.
+     *
      * @return The patient's MedicalRecord.
      */
     public MedicalRecord getRecord() {
@@ -108,6 +116,7 @@ public class Patient extends User{
 
     /**
      * Returns the patient's outstanding balance.
+     *
      * @return A double representing the patient's outstanding balance.
      */
     public double getBalance() {
@@ -116,6 +125,7 @@ public class Patient extends User{
 
     /**
      * Sets the patient's outstanding balance.
+     *
      * @param balance A double representing the patient's new balance.
      */
     public void setBalance(double balance) {

@@ -16,9 +16,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.UserList;
@@ -39,6 +42,8 @@ public class LoginController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private Button loginButton;
+    @FXML
+    private Text loginFailedText;
 
     public LoginController() {
         ul = new UserList();
@@ -61,22 +66,34 @@ public class LoginController implements Initializable {
     @FXML
     private void onForgotPasswordButtonAction(ActionEvent event) {
         //Call forgot password button controller and launch new UI
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Forgot Password");
+        alert.setHeaderText("AlphaCare Testing Credentials");
+        alert.setContentText("Username: testuser | Password: testpass");
+        alert.showAndWait();
     }
 
     @FXML
     private void onNewUserButtonAction(ActionEvent event) {
         //Call new user ui and launch new UI
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("New User");
+        //alert.setHeaderText("AlphaCare Testing Credentials");
+        alert.setContentText("Contact your Physician to be added to the AlphaCare.");
+        alert.showAndWait();
     }
 
     @FXML
     private void onLoginButtonAction(ActionEvent event) {
 
         if (UserStore.getInstance().authenticateUser(userNameTextField.getText(), passwordField.getText())) {
+            this.loginFailedText.setVisible(false);
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
             requestHomeController();
         } else {
-            System.out.println("Login Failed");
+            this.loginFailedText.setVisible(true);
+//            System.out.println("Login Failed");
         }
 
     }
@@ -92,6 +109,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //This sets login button to default so when you hit enter it's like pressing the login button
         this.loginButton.setDefaultButton(true);
+        this.loginFailedText.setVisible(false);
     }
 
     public void getLoginUI() {

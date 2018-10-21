@@ -13,44 +13,44 @@ import javafx.beans.property.SimpleStringProperty;
  * @author pss5205
  */
 public class ScheduleTableEntry {
-   private final SimpleStringProperty physicianName = new SimpleStringProperty("");
-   private final SimpleStringProperty appointmentDate = new SimpleStringProperty("");
-   private final SimpleStringProperty appointmentDescription = new SimpleStringProperty("");
+
+    private final SimpleStringProperty physicianName = new SimpleStringProperty("");
+    private final SimpleStringProperty appointmentDate = new SimpleStringProperty("");
+    private final SimpleStringProperty appointmentDescription = new SimpleStringProperty("");
 
     public ScheduleTableEntry() {
         this("", new Date(), "");
     }
- 
+
     public ScheduleTableEntry(String name, Date appointmentDate, String appointmentDesc) {
         setPhysicianName(name);
         setAppointmentDate(appointmentDate.toString());
         this.setAppointmentDescription(appointmentDesc);
-        
+
     }
 
     public String getPhysicianName() {
         return physicianName.get();
     }
- 
+
     public void setPhysicianName(String fName) {
         physicianName.set(fName);
     }
-        
+
     public String getAppointmentDate() {
         return appointmentDate.get();
     }
-    
+
     public void setAppointmentDate(String date) {
         appointmentDate.set(date);
     }
-    
-    public String getAppointmentDescription(){
+
+    public String getAppointmentDescription() {
         return this.appointmentDescription.get();
     }
-    public void setAppointmentDescription(String appointmentDesc){
+
+    public void setAppointmentDescription(String appointmentDesc) {
         this.appointmentDescription.set(appointmentDesc);
     }
-    
 
 }
-

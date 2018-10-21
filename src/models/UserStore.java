@@ -26,74 +26,74 @@ import java.util.logging.Logger;
  * @author Paul
  */
 public class UserStore {
-    
+
     private List<User> userList;
     private final String fileName = "UserList.json";
     private User currentlyAuthenticatedUser;
-    
+
     private UserStore() {
         userList = new ArrayList<>();
-        userList.add(new Patient("testuser", "testpass".toCharArray(), new Address(), "NA"));
-        Patient p1 = (Patient)userList.get(0);
-        p1.setFirstName("John");
-        p1.setLastName("Doe");
-        p1.setAge(55);
-        p1.setHeight(66.5);
-        p1.setWeight(145.3);
+//        userList.add(new Patient("testuser", "testpass".toCharArray(), new Address(), "NA"));
+//        Patient p1 = (Patient)userList.get(0);
+//        p1.setFirstName("John");
+//        p1.setLastName("Doe");
+//        p1.setAge(55);
+//        p1.setHeight(66.5);
+//        p1.setWeight(145.3);
+        loadUserList();
     }
-    
+
     public static UserStore getInstance() {
         return UserStoreHolder.INSTANCE;
     }
-    
+
     private static class UserStoreHolder {
 
         private static final UserStore INSTANCE = new UserStore();
     }
-    
-    public boolean authenticateUser(String username, String password){
+
+    public boolean authenticateUser(String username, String password) {
         userList.stream().filter((u) -> (u.getUsername().equals(username))).filter((u) -> (Arrays.equals(u.getPassword(), password.toCharArray()))).forEachOrdered((u) -> {
             this.currentlyAuthenticatedUser = u;
         });
         return userList.stream().filter((u) -> (u.getUsername().equals(username))).anyMatch((u) -> (Arrays.equals(u.getPassword(), password.toCharArray())));
     }
-    
-    public User getCurrentlyAuthenticatedUser(){
+
+    public User getCurrentlyAuthenticatedUser() {
         return this.currentlyAuthenticatedUser;
     }
-    
-    public void clearAuthenticatedUser(){
+
+    public void clearAuthenticatedUser() {
         this.currentlyAuthenticatedUser = null;
     }
+
     public void loadUserList() {
         Gson gson = new Gson();
 
         try {
-          
+
             BufferedReader br = new BufferedReader(
                     new FileReader(fileName));
             String str = br.readLine();
-            if(str == null || str.isEmpty()){           
-            this.userList = new ArrayList<>();
-            }
-            else if(str.contentEquals("null")){
-               this.userList = new ArrayList<>();
-            }
-            else
-            {
-            br = new BufferedReader(
-                    new FileReader(fileName));
-            Type ListType = new TypeToken<List<User>>(){}.getType();
+            if (str == null || str.isEmpty()) {
+                this.userList = new ArrayList<>();
+            } else if (str.contentEquals("null")) {
+                this.userList = new ArrayList<>();
+            } else {
+                br = new BufferedReader(
+                        new FileReader(fileName));
+                Type ListType = new TypeToken<List<Patient>>() {
+                }.getType();
 
-            List<User> uList = gson.fromJson(br, ListType); 
-            this.userList = uList;
-        }
+                List<User> uList = gson.fromJson(br, ListType);
+                this.userList = uList;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void saveIngredientList() {
+    public void saveUserList() {
 
         File file = new File(fileName);
         System.out.println("Path: " + file.getAbsolutePath());

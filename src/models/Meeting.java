@@ -13,12 +13,14 @@ import java.util.Date;
  * @author ariannascheidell
  */
 public class Meeting {
+
     private ArrayList<User> attendees;
     private Date datetime;
     private String place;
 
     /**
      * This is the default constructor for the Meeting class.
+     *
      * @param attendees An ArrayList of Users representing meeting attendees.
      * @param datetime A Calendar representing the date and time of the meeting.
      * @param place A string representing the place the meeting will be held.
@@ -31,6 +33,7 @@ public class Meeting {
 
     /**
      * Returns the ArrayList of attendees.
+     *
      * @return An ArrayList of Users representing the attendees.
      */
     public ArrayList<User> getAttendees() {
@@ -39,6 +42,7 @@ public class Meeting {
 
     /**
      * Sets the meeting attendees.
+     *
      * @param attendees An ArrayList of Users representing the attendees.
      */
     public void setAttendees(ArrayList<User> attendees) {
@@ -47,6 +51,7 @@ public class Meeting {
 
     /**
      * Returns a Date representing the date and time of the meeting.
+     *
      * @return A Date representing the date and time of the meeting.
      */
     public Date getDatetime() {
@@ -55,6 +60,7 @@ public class Meeting {
 
     /**
      * Sets the date and time of the meeting.
+     *
      * @param datetime A Date representing the date and time of the meeting.
      */
     public void setDatetime(Date datetime) {
@@ -63,6 +69,7 @@ public class Meeting {
 
     /**
      * Returns a String representing the place of the meeting.
+     *
      * @return a String representing the place of the meeting.
      */
     public String getPlace() {
@@ -71,25 +78,28 @@ public class Meeting {
 
     /**
      * Sets the place of the meeting.
+     *
      * @param place A string representing the place of the meeting.
      */
     public void setPlace(String place) {
         this.place = place;
     }
-    
+
     /**
      * Adds an attendee to the meeting.
+     *
      * @param u A user representing an attendee.
-     */ 
+     */
     public void addAttendee(User u) {
 
     }
-    
+
     /**
      * Removes an attendee from the meeting.
+     *
      * @param u A user representing an attendee.
      */
     public void removeAttendee(User u) {
-        
+
     }
 }

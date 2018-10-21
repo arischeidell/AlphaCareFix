@@ -25,44 +25,42 @@ import java.util.logging.Logger;
  * @author pss5205
  */
 public class AppointmentStore {
-    
+
     private List<ScheduleTableEntry> scheduleTableStore;
-    
+
     private AppointmentStore() {
     }
-    
+
     public static AppointmentStore getInstance() {
         return AppointmentStoreHolder.INSTANCE;
     }
-    
+
     private static class AppointmentStoreHolder {
 
         private static final AppointmentStore INSTANCE = new AppointmentStore();
     }
-    
-      public void loadScheduleTableEntryList() {
+
+    public void loadScheduleTableEntryList() {
         Gson gson = new Gson();
 
         try {
-          
+
             BufferedReader br = new BufferedReader(
                     new FileReader("ScheduleTableStore.json"));
             String str = br.readLine();
-            if(str == null || str.isEmpty()){           
-            this.scheduleTableStore = new ArrayList<>();
-            }
-            else if(str.contentEquals("null")){
-               this.scheduleTableStore = new ArrayList<>();
-            }
-            else
-            {
-            br = new BufferedReader(
-                    new FileReader("ScheduleTableStore.json"));
-            Type ListType = new TypeToken<List<ScheduleTableEntry>>(){}.getType();
+            if (str == null || str.isEmpty()) {
+                this.scheduleTableStore = new ArrayList<>();
+            } else if (str.contentEquals("null")) {
+                this.scheduleTableStore = new ArrayList<>();
+            } else {
+                br = new BufferedReader(
+                        new FileReader("ScheduleTableStore.json"));
+                Type ListType = new TypeToken<List<ScheduleTableEntry>>() {
+                }.getType();
 
-            List<ScheduleTableEntry> ingredientList = gson.fromJson(br, ListType); 
-            this.scheduleTableStore = ingredientList;
-        }
+                List<ScheduleTableEntry> ingredientList = gson.fromJson(br, ListType);
+                this.scheduleTableStore = ingredientList;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,10 +80,10 @@ public class AppointmentStore {
 
     public List<ScheduleTableEntry> getScheduleTableStore() {
         this.loadScheduleTableEntryList();
-        if(scheduleTableStore == null){
+        if (scheduleTableStore == null) {
             return new ArrayList<>();
         }
         return scheduleTableStore;
     }
-    
+
 }

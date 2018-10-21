@@ -15,24 +15,24 @@ import static org.junit.Assert.*;
  * @author Paul
  */
 public class AddUserViewTest {
-    
+
     public AddUserViewTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
 
     @Test
     public void testViewExists() {
-        
+
         AddUserView test = new AddUserView();
         assertNotNull(test);
-        
+
     }
-    
+
 }

@@ -29,7 +29,8 @@ import models.UserStore;
  *
  * @author ariannascheidell
  */
-public class HomeController implements Initializable{
+public class HomeController implements Initializable {
+
     private MedicalRecordController mrc;
     private MedicationController medController;
     private MeetingController meetingController;
@@ -44,79 +45,77 @@ public class HomeController implements Initializable{
     private Text currentDateText;
     @FXML
     private Button recordViewerButton;
-    
-    
+
     public HomeController() {
         System.out.println("Home Controller"); //for testing purposes
         //this.homeView = new HomeView();
-         
+
     }
-    
-    public void startHomeUI(){
-         try{
+
+    public void startHomeUI() {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/HomeView.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("AlphaCare");
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root1));
             stage.show();
-          } catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void closeHomeUI(){
-           Stage stage = (Stage) patientNameText.getScene().getWindow();
-            stage.close();
+
+    public void closeHomeUI() {
+        Stage stage = (Stage) patientNameText.getScene().getWindow();
+        stage.close();
     }
-    
+
     public void viewMedicalRecord() {
         this.mrc = new MedicalRecordController();
     }
-    
-    public void viewMeds(){
+
+    public void viewMeds() {
         medController = new MedicationController();
     }
-    
-    public void viewMeetings(){
+
+    public void viewMeetings() {
         meetingController = new MeetingController();
     }
-    
+
     public void viewSearch() {
         sc = new SearchController();
     }
-    
+
     @FXML
-    private void onLogoutButtonAction(ActionEvent event){
+    private void onLogoutButtonAction(ActionEvent event) {
         UserStore.getInstance().clearAuthenticatedUser();
         this.closeHomeUI();
         LoginController lc = new LoginController();
         lc.getLoginUI();
     }
-    
+
     @FXML
-    private void onAppointmentSchedulerButtonAction(ActionEvent event){
+    private void onAppointmentSchedulerButtonAction(ActionEvent event) {
         this.closeHomeUI();
         ScheduleController sc = new ScheduleController();
         sc.showScheduleUI();
     }
-    
+
     @FXML
     private void onRecordViewerButtonAction(ActionEvent event) {
         this.closeHomeUI();
         MedicalRecordController mc = new MedicalRecordController();
         mc.showMedicalRecordUI();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    Patient authUser = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
-    this.patientNameText.setText(authUser.getUsername());
-    this.currentDateText.setText(LocalDate.now().toString());
-    this.patientPhoneText.setText(authUser.getPhone());
-    this.patientAddressText.setText(authUser.getAddress().toString());
-    }    
-        
-    
+        Patient authUser = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
+        this.patientNameText.setText(authUser.getUsername());
+        this.currentDateText.setText(LocalDate.now().toString());
+        this.patientPhoneText.setText(authUser.getPhone());
+        this.patientAddressText.setText(authUser.getAddress().toString());
+    }
+
 }

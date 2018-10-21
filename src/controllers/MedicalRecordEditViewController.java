@@ -46,11 +46,11 @@ public class MedicalRecordEditViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            Patient authU = (Patient)UserStore.getInstance().getCurrentlyAuthenticatedUser();
-            this.ageField.setText(Integer.toString(authU.getAge()));
-            this.weightField.setText(Double.toString(authU.getWeight()));
-            this.heightField.setText(Double.toString(authU.getHeight()));
-            this.nameField.setText(authU.getFirstName() + " " + authU.getLastName());
+        Patient authU = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
+        this.ageField.setText(Integer.toString(authU.getAge()));
+        this.weightField.setText(Double.toString(authU.getWeight()));
+        this.heightField.setText(Double.toString(authU.getHeight()));
+        this.nameField.setText(authU.getFirstName() + " " + authU.getLastName());
     }
 
     public void closeEditUI() {
@@ -74,30 +74,39 @@ public class MedicalRecordEditViewController implements Initializable {
 
     @FXML
     private void onSaveButtonAction(ActionEvent event) {
-           Patient authPatient = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
+        Patient authPatient = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
         if (this.tryParseInt(this.ageField.getText())) {
             authPatient.setAge(Integer.parseInt(this.ageField.getText()));
         }
-        if (this.tryParseInt(this.heightField.getText())) {
+        if (this.tryParseDouble(this.heightField.getText())) {
             authPatient.setHeight(Double.parseDouble(this.heightField.getText()));
         }
-        if (this.tryParseInt(this.weightField.getText())) {
+        if (this.tryParseDouble(this.weightField.getText())) {
             authPatient.setWeight(Double.parseDouble(this.weightField.getText()));
         }
         if (this.nameField.getText().split(" ").length > 1) {
             authPatient.setFirstName(this.nameField.getText().split(" ")[0]);
             authPatient.setLastName(this.nameField.getText().split(" ")[1]);
         }
-        
+        UserStore.getInstance().saveUserList();
         this.closeEditUI();
         MedicalRecordController mc = new MedicalRecordController();
         mc.showMedicalRecordUI();
-     
+
     }
 
     private boolean tryParseInt(String value) {
         try {
             Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean tryParseDouble(String value) {
+        try {
+            Double.parseDouble(value);
             return true;
         } catch (NumberFormatException e) {
             return false;

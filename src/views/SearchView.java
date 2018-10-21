@@ -10,7 +10,8 @@ package views;
  * @author ariannascheidell
  */
 public class SearchView {
-    public SearchView () {
+
+    public SearchView() {
         System.out.println("----SearchView"); //for testing purposes
     }
 }

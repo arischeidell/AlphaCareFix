@@ -15,14 +15,14 @@ import static org.junit.Assert.*;
  * @author pss5205
  */
 public class UserListTest {
-    
+
     public UserListTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -56,7 +56,7 @@ public class UserListTest {
     public void testAuthenticate() {
         System.out.println("authenticate");
         String username = "test";
-        char[] password = {'t','e','s','t'};
+        char[] password = {'t', 'e', 's', 't'};
         UserList instance = new UserList();
         boolean expResult = false;
         boolean result = instance.authenticate(username, password);
@@ -75,5 +75,5 @@ public class UserListTest {
         boolean result = instance.userExists(username);
         assertEquals(expResult, result);
     }
-    
+
 }

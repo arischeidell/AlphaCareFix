@@ -10,6 +10,7 @@ package views;
  * @author ariannascheidell
  */
 public class MeetingView {
+
     public MeetingView() {
         System.out.println("----MeetingView"); //for testing purposes
     }

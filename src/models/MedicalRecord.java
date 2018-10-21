@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *Abstract class that represents any type of medical record.
+ * Abstract class that represents any type of medical record.
+ *
  * @author Paul
  */
 public class MedicalRecord {
+
     private Date creation;
     private Date lastUpdated;
     private String recordDescription;
@@ -25,20 +27,22 @@ public class MedicalRecord {
         this.meds = new ArrayList();
         this.vacs = initVacs();
     }
-    
+
     public ArrayList<Vaccine> initVacs() {
         ArrayList<Vaccine> vacs = new ArrayList();
-        vacs.add(new Vaccine ("Flu"));
-        vacs.add(new Vaccine ("MMR")); //Measles, Mumps, Rubella
-        vacs.add(new Vaccine ("Tetanus"));
-        vacs.add(new Vaccine ("Chickenpox"));
-        
+        vacs.add(new Vaccine("Flu"));
+        vacs.add(new Vaccine("MMR")); //Measles, Mumps, Rubella
+        vacs.add(new Vaccine("Tetanus"));
+        vacs.add(new Vaccine("Chickenpox"));
+
         return vacs;
     }
-    
+
     /**
      * Gets the creation date of a medical record.
-     * @return createDate A date representing the creation of the medical record.
+     *
+     * @return createDate A date representing the creation of the medical
+     * record.
      */
     public Date getCreation() {
         return creation;
@@ -46,6 +50,7 @@ public class MedicalRecord {
 
     /**
      * Sets the creation date and time of a medical record.
+     *
      * @param update A date representing the new update date and time.
      */
     public void setLastUpdated(Date update) {
@@ -54,6 +59,7 @@ public class MedicalRecord {
 
     /**
      * Gets the text description of a medical record.
+     *
      * @return A string representing the description of a medical record.
      */
     public String getRecordDescription() {
@@ -61,34 +67,39 @@ public class MedicalRecord {
     }
 
     /**
-     *Sets the text description of a medical record.
-     * @param recordDescription A string representing the description of a medical record.
+     * Sets the text description of a medical record.
+     *
+     * @param recordDescription A string representing the description of a
+     * medical record.
      */
     public void setRecordDescription(String recordDescription) {
         this.recordDescription = recordDescription;
     }
-    
+
     /**
      * Gets all medications associated with a patient.
+     *
      * @return An ArrayList of the patient's Medications.
      */
     public ArrayList<Medication> getMeds() {
         return meds;
     }
-    
+
     /**
      * Adds a medication to a patient record.
+     *
      * @param m The medication to be added.
      */
     public void addMed(Medication m) {
-        
+
     }
-    
+
     /**
      * Removes a medication from a patient record.
+     *
      * @param m The medication to be removed.
      */
     public void removeMed(Medication m) {
-        
+
     }
 }

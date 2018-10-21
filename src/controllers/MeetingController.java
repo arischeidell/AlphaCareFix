@@ -13,47 +13,53 @@ import views.MeetingView;
  * @author Paul
  */
 public class MeetingController {
+
     private MeetingView view;
-    
+
     public MeetingController() {
         System.out.println("Meeting Controller"); //for testing purposes
         view = new MeetingView();
     }
-    
-    /**Schedules a meeting for users
+
+    /**
+     * Schedules a meeting for users
      *
      */
-    public void scheduleMeeting(){
-        
+    public void scheduleMeeting() {
+
     }
-    
-    /**Gets all the meetings for a user
+
+    /**
+     * Gets all the meetings for a user
      *
      * @return Meeting Object
      */
-    public Meeting getMeetingFromUser(){
+    public Meeting getMeetingFromUser() {
         return null;
     }
-    
-    /**Updates meeting information
+
+    /**
+     * Updates meeting information
      *
      */
-    public void updateMeeting(){
-        
+    public void updateMeeting() {
+
     }
-    
-    /**Adds a user to a meeting
+
+    /**
+     * Adds a user to a meeting
      *
      */
-    public void addMeetingParticipant(){
-        
+    public void addMeetingParticipant() {
+
     }
-    
-    /**Removes a user from a meeting
+
+    /**
+     * Removes a user from a meeting
      *
      */
-    public void removeMeetingParticipant(){
-        
+    public void removeMeetingParticipant() {
+
     }
-    
+
 }

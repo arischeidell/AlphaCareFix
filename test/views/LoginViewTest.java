@@ -5,6 +5,7 @@
  */
 package views;
 
+import javafx.fxml.FXMLLoader;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,22 +16,22 @@ import static org.junit.Assert.*;
  * @author Paul
  */
 public class LoginViewTest {
-    
+
     public LoginViewTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
 
     @Test
     public void testLoginViewExist() {
-        LoginView test = new LoginView();
-        assertNotNull(test);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/LoginView.fxml"));
+        assertNotNull(fxmlLoader);
     }
-    
+
 }

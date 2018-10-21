@@ -17,14 +17,14 @@ import static org.junit.Assert.*;
  * @author pss5205
  */
 public class MedicalRecordTest {
-    
+
     public MedicalRecordTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -109,5 +109,5 @@ public class MedicalRecordTest {
         MedicalRecord instance = new MedicalRecord();
         instance.removeMed(m);
     }
-    
+
 }

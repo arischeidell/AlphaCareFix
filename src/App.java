@@ -10,12 +10,11 @@ import javafx.stage.Stage;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ariannascheidell
  */
-public class App extends Application{
+public class App extends Application {
 
     /**
      * @param args the command line arguments
@@ -30,11 +29,11 @@ public class App extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setTitle("AlphaCare");
         stage.setScene(scene);
         stage.show();
     }
-    
+
 }

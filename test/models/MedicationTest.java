@@ -16,14 +16,14 @@ import static org.junit.Assert.*;
  * @author pss5205
  */
 public class MedicationTest {
-    
+
     public MedicationTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -119,5 +119,5 @@ public class MedicationTest {
         Medication instance = new Medication("");
         instance.removeSideEffect(se);
     }
-    
+
 }

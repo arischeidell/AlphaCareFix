@@ -21,7 +21,7 @@ import org.junit.BeforeClass;
  * @author pss5205
  */
 public class UserControllerTest {
-    
+
     public UserControllerTest() {
     }
 
@@ -32,11 +32,11 @@ public class UserControllerTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -98,5 +98,5 @@ public class UserControllerTest {
         boolean result = instance.hasUserPermission();
         assertEquals(expResult, result);
     }
-    
+
 }

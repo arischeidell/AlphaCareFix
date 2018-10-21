@@ -8,13 +8,13 @@ import models.Doctor;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author pss5205
  */
 public class TestHarness {
-    public TestHarness(){
+
+    public TestHarness() {
         //double controllerTests = testControllers();
         //double modelTests = testModels();
         HomeController hc = new HomeController();
@@ -24,7 +24,7 @@ public class TestHarness {
         hc.viewSearch();
     }
     //Tests were created using JUnit and they are located in the tests package.
-    
+
 //    private double testControllers(){
 //        ArrayList<Double> controllerTests = new ArrayList<>();
 //        controllerTests.add(testMedicalRecordController());
@@ -115,6 +115,4 @@ public class TestHarness {
 //        
 //        return 0.0;
 //    }
-
-
 }

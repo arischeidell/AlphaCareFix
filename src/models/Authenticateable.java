@@ -10,16 +10,19 @@ package models;
  * @author ariannascheidell
  */
 public interface Authenticateable {
+
     /**
      * This method checks authenticates the user.
+     *
      * @param username The user's username.
      * @param password The user's password.
      * @return A boolean representing whether authentication is successful.
      */
-    public boolean authenticate(String username, char [] password);
-    
+    public boolean authenticate(String username, char[] password);
+
     /**
      * Checks whether a user exists.
+     *
      * @param username The user's username.
      * @return A boolean representing whether user exists.
      */

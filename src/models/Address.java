@@ -10,6 +10,7 @@ package models;
  * @author ariannascheidell
  */
 public class Address {
+
     private String addressLine1;
     private String addressLine2;
     private String city;
@@ -18,6 +19,7 @@ public class Address {
 
     /**
      * Default constructor for an Address object.
+     *
      * @param addressLine1 A string representing the first line of the address.
      * @param addressLine2 A string representing the second line of the address.
      * @param city A string representing the city.
@@ -31,7 +33,7 @@ public class Address {
         this.state = state;
         this.zipcode = zipcode;
     }
-    
+
     public Address() {
         this.addressLine1 = "";
         this.addressLine2 = "";
@@ -42,6 +44,7 @@ public class Address {
 
     /**
      * Gets the first address line from an an address object.
+     *
      * @return addressLine1 A string representing the first line of the address.
      */
     public String getAddressLine1() {
@@ -50,6 +53,7 @@ public class Address {
 
     /**
      * Sets the first address line.
+     *
      * @param addressLine1 A string representing new first line of the address.
      */
     public void setAddressLine1(String addressLine1) {
@@ -58,6 +62,7 @@ public class Address {
 
     /**
      * Gets the second address line.
+     *
      * @return A string representing the second line of the address.
      */
     public String getAddressLine2() {
@@ -66,14 +71,17 @@ public class Address {
 
     /**
      * Sets the second address line.
-     * @param addressLine2 A string representing the new second line of the address.
+     *
+     * @param addressLine2 A string representing the new second line of the
+     * address.
      */
     public void setAddressLine2(String addressLine2) {
         this.addressLine2 = addressLine2;
     }
-    
+
     /**
      * Returns the city from address as a string.
+     *
      * @return A string representing the city.
      */
     public String getCity() {
@@ -82,6 +90,7 @@ public class Address {
 
     /**
      * Sets the city of an address object.
+     *
      * @param city A string representing the new city.
      */
     public void setCity(String city) {
@@ -90,6 +99,7 @@ public class Address {
 
     /**
      * Returns the state from address as a string.
+     *
      * @return A string representing the state.
      */
     public String getState() {
@@ -98,6 +108,7 @@ public class Address {
 
     /**
      * Sets the state of an address object.
+     *
      * @param state A string representing the new state.
      */
     public void setState(String state) {
@@ -106,6 +117,7 @@ public class Address {
 
     /**
      * Gets the zip code from an address object.
+     *
      * @return A string representing the zip code.
      */
     public String getZipcode() {
@@ -114,6 +126,7 @@ public class Address {
 
     /**
      * Sets the zip code on an address object.
+     *
      * @param zipcode A string representing the new zip code.
      */
     public void setZipcode(String zipcode) {
@@ -122,6 +135,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" + "addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", city=" + city + ", state=" + state + ", zipcode=" + zipcode + '}';
+        //return "Address{" + "addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", city=" + city + ", state=" + state + ", zipcode=" + zipcode + '}';
+        return addressLine1;
     }
 }

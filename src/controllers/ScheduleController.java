@@ -41,9 +41,9 @@ import models.AppointmentStore;
  * @author pss5205
  */
 public class ScheduleController implements Initializable {
-    
+
     private ObservableList<ScheduleTableEntry> scheduledTableList;
-    
+
     @FXML
     private Button clearButton;
     @FXML
@@ -58,21 +58,20 @@ public class ScheduleController implements Initializable {
     private TableView<ScheduleTableEntry> scheduledTable;
     @FXML
     private ChoiceBox timeSelect;
-    
-    
+
     @FXML
-    private void onPhysicianSelect(ActionEvent event){
+    private void onPhysicianSelect(ActionEvent event) {
         //Should Update Avail. Dates and Times
     }
-    
+
     @FXML
-    private void onDatePick(ActionEvent event){
+    private void onDatePick(ActionEvent event) {
         //Should update aval. times
     }
-    
+
     @FXML
-    private void onSaveButtonPress(ActionEvent event){
-        LocalDate localDate = appointmentDatePicker.getValue();     
+    private void onSaveButtonPress(ActionEvent event) {
+        LocalDate localDate = appointmentDatePicker.getValue();
         LocalTime localTime = (LocalTime) timeSelect.getSelectionModel().getSelectedItem();
         LocalDateTime ldt = LocalDateTime.of(localDate, localTime);
         Date date = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
@@ -85,59 +84,59 @@ public class ScheduleController implements Initializable {
         AppointmentStore.getInstance().saveScheduleTableEntryList();
         this.onClearButtonPress(event);
     }
-    
+
     @FXML
-    private void onClearButtonPress(ActionEvent event){
+    private void onClearButtonPress(ActionEvent event) {
         this.physicianSelect.getSelectionModel().clearSelection();
-        this.timeSelect.getSelectionModel().clearSelection();        
+        this.timeSelect.getSelectionModel().clearSelection();
         this.appointmentDatePicker.getEditor().clear();
         this.appointmentDatePicker.setValue(null);
     }
-    
+
     @FXML
-    private void onTimeSelect(ActionEvent event){
-        
+    private void onTimeSelect(ActionEvent event) {
+
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-         physicianSelect.setItems(FXCollections.observableArrayList(
-            "Haynes, Steven D.O.", "Lipniskis, Jeffery M.D.", "Jobs, Steven P.A.", "Murphy, Alison M.D.")
+        physicianSelect.setItems(FXCollections.observableArrayList(
+                "Haynes, Steven D.O.", "Lipniskis, Jeffery M.D.", "Jobs, Steven P.A.", "Murphy, Alison M.D.")
         );
-         
-         List<LocalTime> availibleTimes = getAvailibleTimes();
-         timeSelect.setItems(FXCollections.observableArrayList(availibleTimes));
-         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
-         scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
-         scheduledTable.setItems(this.scheduledTableList);
-         
+
+        List<LocalTime> availibleTimes = getAvailibleTimes();
+        timeSelect.setItems(FXCollections.observableArrayList(availibleTimes));
+        List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
+        scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
+        scheduledTable.setItems(this.scheduledTableList);
+
     }
 
-    private List<LocalTime> getAvailibleTimes(){
-        ArrayList<LocalTime> times = new ArrayList<>();        
-        for(int hoursInDay = 8; hoursInDay < 17; hoursInDay++){
-              times.add(LocalTime.of(hoursInDay, 0));
+    private List<LocalTime> getAvailibleTimes() {
+        ArrayList<LocalTime> times = new ArrayList<>();
+        for (int hoursInDay = 8; hoursInDay < 17; hoursInDay++) {
+            times.add(LocalTime.of(hoursInDay, 0));
         }
-    
+
         return times;
     }
-    
-    public void closeScheduleUI(){
-          Stage stage = (Stage) this.appointmentDatePicker.getScene().getWindow();
-            stage.close();
+
+    public void closeScheduleUI() {
+        Stage stage = (Stage) this.appointmentDatePicker.getScene().getWindow();
+        stage.close();
     }
-    
-    public void showScheduleUI(){
-         try{
+
+    public void showScheduleUI() {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/ScheduleAppointment.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("AlphaCare");
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root1));
             stage.show();
-          } catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -148,5 +147,5 @@ public class ScheduleController implements Initializable {
         HomeController homeController = new HomeController();
         homeController.startHomeUI();
     }
-    
+
 }

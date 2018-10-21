@@ -16,14 +16,14 @@ import static org.junit.Assert.*;
  * @author pss5205
  */
 public class PermissionTest {
-    
+
     public PermissionTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -119,5 +119,5 @@ public class PermissionTest {
         Permission instance = new Permission(true, true, true, new File(""));
         instance.setFile(file);
     }
-    
+
 }

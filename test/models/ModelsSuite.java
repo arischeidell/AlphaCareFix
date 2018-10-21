@@ -25,5 +25,5 @@ public class ModelsSuite {
     @After
     public void tearDown() throws Exception {
     }
-    
+
 }

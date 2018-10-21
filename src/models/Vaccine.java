@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  * @author ariannascheidell
  */
 public class Vaccine {
+
     private String dateAdministered;
     private String name;
 
@@ -24,7 +25,7 @@ public class Vaccine {
         this.dateAdministered = "";
         this.name = "";
     }
-    
+
     public Vaccine(String name) {
         this.dateAdministered = "---";
         this.name = name;

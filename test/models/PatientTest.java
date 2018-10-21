@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
  * @author pss5205
  */
 public class PatientTest {
-    
+
     public PatientTest() {
     }
 
@@ -28,11 +28,11 @@ public class PatientTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,7 +43,7 @@ public class PatientTest {
     @Test
     public void testGetAddress() {
         System.out.println("getAddress");
-        char [] pw = {};
+        char[] pw = {};
         Patient instance = new Patient();
         instance.setAddress(new Address("Test", "Test", "Test", "Test", "12345"));
         Address expResult = new Address("Test", "Test", "Test", "Test", "12345");
@@ -121,5 +121,5 @@ public class PatientTest {
         Patient instance = new Patient();
         instance.setBalance(balance);
     }
-    
+
 }

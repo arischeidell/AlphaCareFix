@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
  * @author pss5205
  */
 public class MedicationControllerTest {
-    
+
     public MedicationControllerTest() {
     }
 
@@ -28,11 +28,11 @@ public class MedicationControllerTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -96,5 +96,5 @@ public class MedicationControllerTest {
         MedicationController instance = new MedicationController();
         instance.updateMedicationForUser();
     }
-    
+
 }

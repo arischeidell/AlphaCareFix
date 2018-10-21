@@ -80,10 +80,10 @@ public class MedicalRecordController implements Initializable {
         this.weightValueText.setText(Double.toString(authU.getWeight()));
         this.heightValueText.setText(Double.toString(authU.getHeight()));
         this.nameValueText.setText(authU.getFirstName() + " " + authU.getLastName());
-        
-         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
-         scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
-         visitTableView.setItems(this.scheduledTableList);
+
+        List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
+        scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
+        visitTableView.setItems(this.scheduledTableList);
     }
 
     public void closeMedicalRecordUI() {

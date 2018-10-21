@@ -10,5 +10,5 @@ package models;
  * @author pss5205
  */
 public class Appointment {
-    
+
 }

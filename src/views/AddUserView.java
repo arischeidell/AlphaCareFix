@@ -10,8 +10,8 @@ package views;
  * @author ariannascheidell
  */
 public class AddUserView {
-    
-    public AddUserView(){
+
+    public AddUserView() {
         System.out.println("---AddUserView"); //for testing purposes
     }
 }

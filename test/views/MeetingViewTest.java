@@ -15,14 +15,14 @@ import static org.junit.Assert.*;
  * @author Paul
  */
 public class MeetingViewTest {
-    
+
     public MeetingViewTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -32,5 +32,5 @@ public class MeetingViewTest {
         MeetingViewTest test = new MeetingViewTest();
         assertNotNull(test);
     }
-    
+
 }

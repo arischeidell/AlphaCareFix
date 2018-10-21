@@ -17,14 +17,14 @@ import static org.junit.Assert.*;
  * @author pss5205
  */
 public class MeetingTest {
-    
+
     public MeetingTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -71,7 +71,7 @@ public class MeetingTest {
     @Test
     public void testSetDatetime() {
         System.out.println("setDatetime");
-        Date datetime =new Date();
+        Date datetime = new Date();
         Meeting instance = new Meeting(new ArrayList(), new Date(), "");
         instance.setDatetime(datetime);
     }
@@ -105,7 +105,7 @@ public class MeetingTest {
     @Test
     public void testAddAttendee() {
         System.out.println("addAttendee");
-        char [] pw = {};
+        char[] pw = {};
         User u = new Doctor("test", pw);
         Meeting instance = new Meeting(new ArrayList(), new Date(), "");
         instance.addAttendee(u);
@@ -117,10 +117,10 @@ public class MeetingTest {
     @Test
     public void testRemoveAttendee() {
         System.out.println("removeAttendee");
-        char [] pw = {};
+        char[] pw = {};
         User u = new Doctor("test", pw);
         Meeting instance = new Meeting(new ArrayList(), new Date(), "");
         instance.removeAttendee(u);
     }
-    
+
 }

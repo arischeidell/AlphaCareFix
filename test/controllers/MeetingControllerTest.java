@@ -18,7 +18,7 @@ import org.junit.BeforeClass;
  * @author pss5205
  */
 public class MeetingControllerTest {
-    
+
     public MeetingControllerTest() {
     }
 
@@ -29,11 +29,11 @@ public class MeetingControllerTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -89,5 +89,5 @@ public class MeetingControllerTest {
         MeetingController instance = new MeetingController();
         instance.removeMeetingParticipant();
     }
-    
+
 }
