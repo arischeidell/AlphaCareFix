@@ -81,7 +81,10 @@ public class BillController implements Initializable{
     }
     
     @FXML public void onBillTableViewMouseClick(MouseEvent me){
-        
+        Bill currentlySelectedBill = (Bill) this.billTableView.getSelectionModel().getSelectedItem();
+        BillDetailController bdc = new BillDetailController();
+        bdc.showBillDetailUI(currentlySelectedBill);
+        //bdc.setBill(currentlySelectedBill);
     }
     
     @FXML public void onHomeButtonAction(ActionEvent e){
