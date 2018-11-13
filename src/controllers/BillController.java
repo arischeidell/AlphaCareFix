@@ -7,9 +7,13 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +21,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Bill;
 
 /**
  *
@@ -27,12 +35,30 @@ import javafx.stage.Stage;
  */
 public class BillController implements Initializable{
 
+    @FXML private ObservableList<Bill> obsBillList;
     @FXML private Button homeButton;
+    @FXML private TableView billTableView;
+    @FXML private TableColumn<Bill, Date> dateTableColumn;
+    @FXML private TableColumn<Bill, String> itemTableColumn;
+    @FXML private TableColumn<Bill, Double> costTableColumn;
+    @FXML private TableColumn<Bill, Double> insuranceTableColumn;
+    @FXML private TableColumn<Bill, Double> dueTableColumn;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Bill> billList = new ArrayList<>();
+        billList.add(new Bill(new Date(), "Vaccine", 121.40, 100.00));
+        billList.add(new Bill(new Date(), "Checkup", 250, 200));
+        obsBillList = FXCollections.observableArrayList(billList);
+        billTableView.setItems(obsBillList);
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("billDate"));
+        itemTableColumn.setCellValueFactory(new PropertyValueFactory<>("itemDesc"));
+        costTableColumn.setCellValueFactory(new PropertyValueFactory<>("totalCost"));
+        insuranceTableColumn.setCellValueFactory(new PropertyValueFactory<>("insuranceCover"));
+        dueTableColumn.setCellValueFactory(new PropertyValueFactory<>("totalDue"));
     }
+    
     
      public void closeBillUI() {
         Stage stage = (Stage) homeButton.getScene().getWindow();
