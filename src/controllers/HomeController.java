@@ -108,7 +108,14 @@ public class HomeController implements Initializable {
         MedicalRecordController mc = new MedicalRecordController();
         mc.showMedicalRecordUI();
     }
-
+    
+    @FXML
+    private void onBillViewButtonAction(ActionEvent e){
+       this.closeHomeUI();
+       BillController bc = new BillController();
+       bc.showBillUI();            
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Patient authUser = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
