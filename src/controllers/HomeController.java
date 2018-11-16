@@ -33,7 +33,7 @@ public class HomeController implements Initializable {
 
     private MedicalRecordController mrc;
     private MedicationController medController;
-    private MeetingController meetingController;
+
     private SearchController sc;
     @FXML
     private Text patientNameText;
@@ -79,9 +79,7 @@ public class HomeController implements Initializable {
         medController = new MedicationController();
     }
 
-    public void viewMeetings() {
-        meetingController = new MeetingController();
-    }
+
 
     public void viewSearch() {
         sc = new SearchController();

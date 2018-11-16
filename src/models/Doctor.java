@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Doctor extends User {
 
-    private ArrayList<Meeting> schedule;
+
 
     /**
      * Constructor to create a Doctor object
@@ -23,7 +23,6 @@ public class Doctor extends User {
      */
     public Doctor(String username, char[] password) {
         super(username, password);
-        this.schedule = new ArrayList();
     }
 
     /**
@@ -31,16 +30,5 @@ public class Doctor extends User {
      *
      * @param m An object holding information about a meeting.
      */
-    public void addMeeting(Meeting m) {
 
-    }
-
-    /**
-     * Removes a meeting from a doctor's schedule
-     *
-     * @param m An object holding information about a meeting.
-     */
-    public void removeMeeting(Meeting m) {
-
-    }
 }

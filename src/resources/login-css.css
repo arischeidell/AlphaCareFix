@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 16, 2018, 12:55:20 PM
+    Author     : mockl
+*/
+
+* {
+    -fx-primary : #2A2E37;
+    -fx-secondary: #FFFF8D;
+    -fx-text: #B2B2B2;
+}
+
+.root{
+    -fx-background-color: -fx-primary;
+}
+

@@ -20,7 +20,7 @@ public class TestHarness {
         HomeController hc = new HomeController();
         hc.viewMedicalRecord();
         hc.viewMeds();
-        hc.viewMeetings();
+       // hc.viewMeetings();
         hc.viewSearch();
     }
     //Tests were created using JUnit and they are located in the tests package.

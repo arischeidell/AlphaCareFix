@@ -24,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import models.UserList;
 import models.UserStore;
 
 /**
@@ -33,8 +32,7 @@ import models.UserStore;
  */
 public class LoginController implements Initializable {
 
-    private UserList ul;
-    private UserController userController;
+
     private HomeController homeController;
     @FXML
     private TextField userNameTextField;
@@ -44,15 +42,12 @@ public class LoginController implements Initializable {
     private Button loginButton;
     @FXML
     private Text loginFailedText;
+    @FXML
+    private Button forgotPasswordButton;
+    @FXML
+    private Button newUserButton;
 
-    public LoginController() {
-        ul = new UserList();
-    }
 
-    public UserController addUser() {
-        userController = new UserController();
-        return userController;
-    }
 
 //    public boolean authenticate(String username, char[] pw) {
 //        boolean auth = ul.authenticate(username, pw);
