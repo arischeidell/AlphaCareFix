@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Patient;
 import models.User;
 import models.UserStore;
@@ -45,6 +46,14 @@ public class HomeController implements Initializable {
     private Text currentDateText;
     @FXML
     private Button recordViewerButton;
+    @FXML
+    private Button appointmentSchedulerButton;
+    @FXML
+    private Button billViewButton;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private Button EditDetailsButton;
 
     public HomeController() {
         System.out.println("Home Controller"); //for testing purposes
@@ -58,6 +67,7 @@ public class HomeController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("AlphaCare");
             stage.setScene(new Scene(root1));
             stage.show();
@@ -121,6 +131,10 @@ public class HomeController implements Initializable {
         this.currentDateText.setText(LocalDate.now().toString());
         this.patientPhoneText.setText(authUser.getPhone());
         this.patientAddressText.setText(authUser.getAddress().toString());
+    }
+
+    @FXML
+    private void editDetails(ActionEvent event) {
     }
 
 }

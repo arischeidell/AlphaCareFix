@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,10 +102,12 @@ public class LoginController implements Initializable {
     }
 
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle rb) {
         //This sets login button to default so when you hit enter it's like pressing the login button
         this.loginButton.setDefaultButton(true);
         this.loginFailedText.setVisible(false);
+
     }
 
     public void getLoginUI() {

@@ -40,26 +40,26 @@
       </VBox>
       <Pane layoutX="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #FFF;">
          <children>
-            <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="171.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/icons8-helping-hand-50.png" />
                </image>
             </ImageView>
-            <Label layoutX="14.0" layoutY="82.0" text="Sign in to continue" textFill="#a3a3a3">
+            <Label layoutX="138.0" layoutY="176.0" text="Sign in to continue" textFill="#a3a3a3">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="userNameTextField" layoutX="50.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #6747CD;" />
             <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="318.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #6747CD;" />
-            <Button fx:id="forgotPasswordButton" layoutX="50.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onForgotPasswordButtonAction" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #6747CD;" text="Forgot Password?" />
-            <Button fx:id="newUserButton" layoutX="225.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNewUserButtonAction" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: transparent; -fx-border-color: #6747CD;" text="New User?" />
-            <Button fx:id="loginButton" layoutX="50.0" layoutY="421.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLoginButtonAction" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #6747CD; -fx-text-fill: white; -fx-border-color: white; -fx-background-radius: 100; -fx-font-weight: bold;" text="Login">
+            <Button fx:id="forgotPasswordButton" layoutX="50.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onForgotPasswordButtonAction" prefHeight="30.0" prefWidth="150.0" stylesheets="@../resources/login-css.css" text="Forgot Password?" />
+            <Button fx:id="newUserButton" layoutX="225.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNewUserButtonAction" prefHeight="30.0" prefWidth="125.0" styleClass="button1" stylesheets="@../resources/login-css.css" text="New User?" />
+            <Button fx:id="loginButton" layoutX="50.0" layoutY="421.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLoginButtonAction" prefHeight="50.0" prefWidth="300.0" stylesheets="@../resources/login-css.css" text="Login">
                <effect>
                   <Reflection />
                </effect>
             </Button>
-            <Text fx:id="loginFailedText" fill="RED" layoutX="168.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Failed" />
+            <Text fx:id="loginFailedText" fill="RED" layoutX="168.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Failed" />
          </children>
       </Pane>
    </children>
