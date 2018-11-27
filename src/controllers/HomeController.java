@@ -54,6 +54,8 @@ public class HomeController implements Initializable {
     private Button logoutButton;
     @FXML
     private Button EditDetailsButton;
+    @FXML
+    private Button patientListButton;
 
     public HomeController() {
         System.out.println("Home Controller"); //for testing purposes
@@ -135,6 +137,13 @@ public class HomeController implements Initializable {
 
     @FXML
     private void editDetails(ActionEvent event) {
+    }
+
+    @FXML
+    private void onPatientListButtonAction(ActionEvent event) {
+       this.closeHomeUI();
+       PatientListController plc = new PatientListController();
+       plc.showPatientListUI();   
     }
 
 }
