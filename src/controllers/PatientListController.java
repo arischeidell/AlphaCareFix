@@ -96,4 +96,10 @@ public class PatientListController implements Initializable{
         Stage stage = (Stage) homeButton.getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    private void onAddUserButtonAction(ActionEvent event) {
+        AddPatientController apc = new AddPatientController();
+        apc.showAddPatientUI();
+    }
 }
