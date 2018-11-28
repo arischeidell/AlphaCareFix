@@ -7,6 +7,7 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +82,11 @@ public class MedicalRecordEditViewController implements Initializable {
         this.weightField.setText(Double.toString(authU.getWeight()));
         this.heightField.setText(Double.toString(authU.getHeight()));
         this.nameField.setText(authU.getFirstName() + " " + authU.getLastName());
+        this.chickenPoxDatePicker.setValue(authU.getRecord().getChickenpox().getDateAdministered());
+        this.fluDatePicker.setValue(authU.getRecord().getFlu().getDateAdministered());
+        this.mmrDatePicker.setValue(authU.getRecord().getMMR().getDateAdministered());
+        this.tetanusDatePicker.setValue(authU.getRecord().getTetanus().getDateAdministered());
+        this.checkDates();
     }
 
     public void closeEditUI() {
@@ -111,14 +117,35 @@ public class MedicalRecordEditViewController implements Initializable {
         this.weightField.setText(Double.toString(authU.getWeight()));
         this.heightField.setText(Double.toString(authU.getHeight()));
         this.nameField.setText(authU.getFirstName() + " " + authU.getLastName());
+        
+         this.chickenPoxDatePicker.setValue(authU.getRecord().getChickenpox().getDateAdministered());
+        this.fluDatePicker.setValue(authU.getRecord().getFlu().getDateAdministered());
+        this.mmrDatePicker.setValue(authU.getRecord().getMMR().getDateAdministered());
+        this.tetanusDatePicker.setValue(authU.getRecord().getTetanus().getDateAdministered());
+        
         if(!authU.getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername())){
             this.chickenPoxDatePicker.setDisable(false);
             this.mmrDatePicker.setDisable(false);
             this.fluDatePicker.setDisable(false);
             this.tetanusDatePicker.setDisable(false);
         }
+        this.checkDates();
     }
 
+    private void checkDates(){
+        ArrayList<DatePicker> datePickerList = new ArrayList<>();
+        datePickerList.add(fluDatePicker);
+        datePickerList.add(mmrDatePicker);
+        datePickerList.add(tetanusDatePicker);
+        datePickerList.add(chickenPoxDatePicker);
+        for(DatePicker dp : datePickerList){
+            if(dp.getValue().getYear() == 1900){
+                dp.setValue(null);
+            }
+        }
+
+    }
+    
     @FXML
     private void onSaveButtonAction(ActionEvent event) {
         Patient authPatient = authU;

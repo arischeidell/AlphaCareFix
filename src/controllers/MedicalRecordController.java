@@ -70,7 +70,7 @@ public class MedicalRecordController implements Initializable {
     private Text ageValueText;
     @FXML
     private TableView visitTableView;
-    
+
     private User selectedUser;
 
     private ObservableList<ScheduleTableEntry> scheduledTableList;
@@ -91,10 +91,19 @@ public class MedicalRecordController implements Initializable {
         this.weightValueText.setText(Double.toString(authU.getWeight()));
         this.heightValueText.setText(Double.toString(authU.getHeight()));
         this.nameValueText.setText(authU.getFirstName() + " " + authU.getLastName());
-        this.MMRDateText.setText(authU.getRecord().getMMR().getDateAdministered().toString());
-        this.chickenBoxDateText.setText(authU.getRecord().getChickenpox().getDateAdministered().toString());
-        this.fluDateText.setText(authU.getRecord().getFlu().getDateAdministered().toString());
-        this.tetanusDateText.setText(authU.getRecord().getTetanus().getDateAdministered().toString());
+
+        if (authU.getRecord().getMMR().getDateAdministered().getYear() != 1900) {
+            this.MMRDateText.setText(authU.getRecord().getMMR().getDateAdministered().toString());
+        }
+        if (authU.getRecord().getChickenpox().getDateAdministered().getYear() != 1900) {
+            this.chickenBoxDateText.setText(authU.getRecord().getChickenpox().getDateAdministered().toString());
+        }
+        if (authU.getRecord().getFlu().getDateAdministered().getYear() != 1900) {
+            this.fluDateText.setText(authU.getRecord().getFlu().getDateAdministered().toString());
+        }
+        if (authU.getRecord().getTetanus().getDateAdministered().getYear() != 1900) {
+            this.tetanusDateText.setText(authU.getRecord().getTetanus().getDateAdministered().toString());
+        }
 
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
         scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
@@ -120,8 +129,8 @@ public class MedicalRecordController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-        public void showMedicalRecordUI(Patient p) {
+
+    public void showMedicalRecordUI(Patient p) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordView.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -130,37 +139,44 @@ public class MedicalRecordController implements Initializable {
             stage.setTitle("AlphaCare");
             stage.setScene(new Scene(root1));
             stage.show();
-            
+
             MedicalRecordController mrc = fxmlLoader.getController();
             mrc.setPatient(p);
             mrc.homeButton.setVisible(false);
-        
+
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        
-        public void setPatient(Patient p){
-            this.ageValueText.setText(Integer.toString(p.getAge()));
+
+    public void setPatient(Patient p) {
+        this.ageValueText.setText(Integer.toString(p.getAge()));
         this.weightValueText.setText(Double.toString(p.getWeight()));
         this.heightValueText.setText(Double.toString(p.getHeight()));
         this.nameValueText.setText(p.getFirstName() + " " + p.getLastName());
+        if (p.getRecord().getMMR().getDateAdministered().getYear() != 1900) {
             this.MMRDateText.setText(p.getRecord().getMMR().getDateAdministered().toString());
-        this.chickenBoxDateText.setText(p.getRecord().getChickenpox().getDateAdministered().toString());
-        this.fluDateText.setText(p.getRecord().getFlu().getDateAdministered().toString());
-        this.tetanusDateText.setText(p.getRecord().getTetanus().getDateAdministered().toString());
-        
+        }
+        if (p.getRecord().getChickenpox().getDateAdministered().getYear() != 1900) {
+            this.chickenBoxDateText.setText(p.getRecord().getChickenpox().getDateAdministered().toString());
+        }
+        if (p.getRecord().getFlu().getDateAdministered().getYear() != 1900) {
+            this.fluDateText.setText(p.getRecord().getFlu().getDateAdministered().toString());
+        }
+        if (p.getRecord().getTetanus().getDateAdministered().getYear() != 1900) {
+            this.tetanusDateText.setText(p.getRecord().getTetanus().getDateAdministered().toString());
+        }
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
         List<ScheduleTableEntry> usersScheduleData = new ArrayList<>();
-          for(ScheduleTableEntry ste : savedScheduleData){
-        if(ste.getUser().getUsername().equals(p.getUsername())){
-            usersScheduleData.add(ste);
-        }                
+        for (ScheduleTableEntry ste : savedScheduleData) {
+            if (ste.getUser().getUsername().equals(p.getUsername())) {
+                usersScheduleData.add(ste);
+            }
         }
         scheduledTableList = FXCollections.observableArrayList(usersScheduleData);
         visitTableView.setItems(this.scheduledTableList);
         this.selectedUser = p;
-        }
+    }
 
     @FXML
     private void goHome(ActionEvent event) {
@@ -173,7 +189,7 @@ public class MedicalRecordController implements Initializable {
     private void onEditButtonEvent(ActionEvent event) {
         this.closeMedicalRecordUI();
         MedicalRecordEditViewController editController = new MedicalRecordEditViewController();
-        if(selectedUser == null){
+        if (selectedUser == null) {
             selectedUser = UserStore.getInstance().getCurrentlyAuthenticatedUser();
         }
         editController.showEditUI(selectedUser);

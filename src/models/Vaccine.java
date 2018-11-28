@@ -7,6 +7,7 @@ package models;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Date;
 
 /**
@@ -29,7 +30,7 @@ public class Vaccine {
     }
 
     public Vaccine(String name) {
-        this.dateAdministered = LocalDate.now();
+        this.dateAdministered = LocalDate.of(1900, 1, 1);
         this.name = name;
     }
 
