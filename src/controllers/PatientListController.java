@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,6 +58,12 @@ public class PatientListController implements Initializable{
        MedicalRecordController mrc = new MedicalRecordController();
        mrc.showMedicalRecordUI(currentlySelectedPatient);
        
+        Stage stage = (Stage)patientTableView.getScene().getWindow();
+        stage.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(patientTableView != null)
+                patientTableView.refresh();
+       });
+       
     }
 
     @FXML
@@ -75,6 +83,7 @@ public class PatientListController implements Initializable{
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         heightColumn.setCellValueFactory(new PropertyValueFactory<>("height"));
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+       
     }
     
     public void showPatientListUI(){
@@ -86,7 +95,7 @@ public class PatientListController implements Initializable{
             stage.setTitle("AlphaCare");
             stage.setScene(new Scene(root1));
             stage.show();
-
+            
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -7,6 +7,7 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -69,8 +70,18 @@ public class MedicalRecordController implements Initializable {
     private Text ageValueText;
     @FXML
     private TableView visitTableView;
+    
+    private User selectedUser;
 
     private ObservableList<ScheduleTableEntry> scheduledTableList;
+    @FXML
+    private Text fluDateText;
+    @FXML
+    private Text tetanusDateText;
+    @FXML
+    private Text MMRDateText;
+    @FXML
+    private Text chickenBoxDateText;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,6 +91,10 @@ public class MedicalRecordController implements Initializable {
         this.weightValueText.setText(Double.toString(authU.getWeight()));
         this.heightValueText.setText(Double.toString(authU.getHeight()));
         this.nameValueText.setText(authU.getFirstName() + " " + authU.getLastName());
+        this.MMRDateText.setText(authU.getRecord().getMMR().getDateAdministered().toString());
+        this.chickenBoxDateText.setText(authU.getRecord().getChickenpox().getDateAdministered().toString());
+        this.fluDateText.setText(authU.getRecord().getFlu().getDateAdministered().toString());
+        this.tetanusDateText.setText(authU.getRecord().getTetanus().getDateAdministered().toString());
 
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
         scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
@@ -130,10 +145,21 @@ public class MedicalRecordController implements Initializable {
         this.weightValueText.setText(Double.toString(p.getWeight()));
         this.heightValueText.setText(Double.toString(p.getHeight()));
         this.nameValueText.setText(p.getFirstName() + " " + p.getLastName());
-
+            this.MMRDateText.setText(p.getRecord().getMMR().getDateAdministered().toString());
+        this.chickenBoxDateText.setText(p.getRecord().getChickenpox().getDateAdministered().toString());
+        this.fluDateText.setText(p.getRecord().getFlu().getDateAdministered().toString());
+        this.tetanusDateText.setText(p.getRecord().getTetanus().getDateAdministered().toString());
+        
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
-        scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
+        List<ScheduleTableEntry> usersScheduleData = new ArrayList<>();
+          for(ScheduleTableEntry ste : savedScheduleData){
+        if(ste.getUser().getUsername().equals(p.getUsername())){
+            usersScheduleData.add(ste);
+        }                
+        }
+        scheduledTableList = FXCollections.observableArrayList(usersScheduleData);
         visitTableView.setItems(this.scheduledTableList);
+        this.selectedUser = p;
         }
 
     @FXML
@@ -147,6 +173,9 @@ public class MedicalRecordController implements Initializable {
     private void onEditButtonEvent(ActionEvent event) {
         this.closeMedicalRecordUI();
         MedicalRecordEditViewController editController = new MedicalRecordEditViewController();
-        editController.showEditUI();
+        if(selectedUser == null){
+            selectedUser = UserStore.getInstance().getCurrentlyAuthenticatedUser();
+        }
+        editController.showEditUI(selectedUser);
     }
 }

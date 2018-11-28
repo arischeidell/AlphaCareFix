@@ -3,16 +3,16 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicalRecordController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicalRecordController">
     <children>
         <AnchorPane id="AnchorPane" layoutY="41.0" prefHeight="400.0" prefWidth="600.0">
             <children>
@@ -24,8 +24,10 @@
                 <Text layoutX="27.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccines" />
                 <GridPane layoutX="27.0" layoutY="124.0" prefHeight="54.0" prefWidth="548.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="153.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="113.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="172.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="110.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -33,10 +35,14 @@
                     </rowConstraints>
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Text fx:id="vac2Text" strokeType="OUTSIDE" strokeWidth="0.0" text="MMR; Date Administered: ---" GridPane.columnIndex="1" />
-                        <Text fx:id="vac4Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Chickenpox; Date Administered: ---" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text fx:id="vac1Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Flu; Date Administered: ---" />
-                        <Text fx:id="vac3Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Tetanus; Date Administered: ---" GridPane.rowIndex="1" />
+                        <Text fx:id="vac2Text" strokeType="OUTSIDE" strokeWidth="0.0" text="MMR; Date Administered:" GridPane.columnIndex="2" />
+                        <Text fx:id="vac4Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Chickenpox; Date Administered:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Text fx:id="vac1Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Flu; Date Administered:" />
+                        <Text fx:id="vac3Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Tetanus; Date Administered:" GridPane.rowIndex="1" />
+                  <Text fx:id="fluDateText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" />
+                  <Text fx:id="tetanusDateText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text fx:id="MMRDateText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" />
+                  <Text fx:id="chickenBoxDateText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
                 <Line endX="422.5" endY="37.0" layoutX="178.0" layoutY="154.0" startX="-178.0" startY="37.0" />
