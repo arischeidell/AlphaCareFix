@@ -105,6 +105,36 @@ public class MedicalRecordController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+        public void showMedicalRecordUI(Patient p) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordView.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("AlphaCare");
+            stage.setScene(new Scene(root1));
+            stage.show();
+            
+            MedicalRecordController mrc = fxmlLoader.getController();
+            mrc.setPatient(p);
+            this.homeButton.setVisible(false);
+        
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+        public void setPatient(Patient p){
+            this.ageValueText.setText(Integer.toString(p.getAge()));
+        this.weightValueText.setText(Double.toString(p.getWeight()));
+        this.heightValueText.setText(Double.toString(p.getHeight()));
+        this.nameValueText.setText(p.getFirstName() + " " + p.getLastName());
+
+        List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
+        scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
+        visitTableView.setItems(this.scheduledTableList);
+        }
 
     @FXML
     private void goHome(ActionEvent event) {

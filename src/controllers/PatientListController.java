@@ -52,6 +52,10 @@ public class PatientListController implements Initializable{
 
     @FXML
     private void onBillTableViewMouseClick(MouseEvent event) {
+       Patient currentlySelectedPatient = (Patient) this.patientTableView.getSelectionModel().getSelectedItem();
+       MedicalRecordController mrc = new MedicalRecordController();
+       mrc.showMedicalRecordUI(currentlySelectedPatient);
+       
     }
 
     @FXML
