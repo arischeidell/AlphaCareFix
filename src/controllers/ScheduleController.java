@@ -93,6 +93,7 @@ public class ScheduleController implements Initializable {
         this.timeSelect.getSelectionModel().clearSelection();
         this.appointmentDatePicker.getEditor().clear();
         this.appointmentDatePicker.setValue(null);
+        this.reasonTextField.setText("");
     }
 
     @FXML

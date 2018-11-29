@@ -8,9 +8,12 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,11 +22,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.AppointmentStore;
+import models.Bill;
 import models.Patient;
+import models.ScheduleTableEntry;
 import models.User;
 import models.UserStore;
 import models.Vaccine;
@@ -72,6 +80,10 @@ public class MedicalRecordEditViewController implements Initializable {
     private DatePicker chickenPoxDatePicker;
     @FXML
     private Text visitText;
+    @FXML
+    private TableView<ScheduleTableEntry> visitTableView;
+    private ObservableList<ScheduleTableEntry> scheduledTableList;
+
     /**
      * Initializes the controller class.
      */
@@ -130,6 +142,16 @@ public class MedicalRecordEditViewController implements Initializable {
             this.tetanusDatePicker.setDisable(false);
         }
         this.checkDates();
+        List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
+        List<ScheduleTableEntry> usersScheduleData = new ArrayList<>();
+        for (ScheduleTableEntry ste : savedScheduleData) {
+            if (ste.getUser().getUsername().equals(authU.getUsername())) {
+                usersScheduleData.add(ste);
+            }
+        }
+        scheduledTableList = FXCollections.observableArrayList(usersScheduleData);
+        visitTableView.setItems(this.scheduledTableList);
+        
     }
 
     private void checkDates(){
@@ -237,5 +259,14 @@ public class MedicalRecordEditViewController implements Initializable {
 
     @FXML
     private void onChickenPoxDatePickerAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void onVisitTableViewClick(MouseEvent event) {
+        ScheduleTableEntry currentlySelectedAppointment = (ScheduleTableEntry) this.visitTableView.getSelectionModel().getSelectedItem();
+        //BillDetailController bdc = new BillDetailController();
+        //bdc.showBillDetailUI(currentlySelectedBill);
+        AppointmentDetailViewController advc = new AppointmentDetailViewController();
+        advc.showAppointmentDetailUI(currentlySelectedAppointment);
     }
 }
