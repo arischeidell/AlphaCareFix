@@ -59,6 +59,9 @@ public abstract class User {
         this.lastName = lastName;
     }
 
+    public boolean isAdmin(){
+        return this.isAdmin;
+    }
 //    public User() {
 //        this.username = "";
 //        this.firstName = "";

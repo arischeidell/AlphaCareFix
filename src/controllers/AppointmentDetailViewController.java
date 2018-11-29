@@ -11,16 +11,19 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.AppointmentStore;
 import models.ScheduleTableEntry;
 import models.ScheduleTableEntry;
 
@@ -39,6 +42,9 @@ public class AppointmentDetailViewController implements Initializable {
     private Text patientText;
     @FXML
     private TextArea reasonTextArea;
+    @FXML
+    private Button saveButton;
+    private ScheduleTableEntry currentAppointment;
 
     /**
      * Initializes the controller class.
@@ -71,5 +77,14 @@ public class AppointmentDetailViewController implements Initializable {
          patientText.setText(ste.getUser().getLastName() + ", " + ste.getUser().getFirstName());
          this.reasonTextArea.setText(ste.getAppointmentDescription());
          this.physicianComboBox.setValue(ste.getPhysicianName());
+         this.resolutionTextArea.setText(ste.getAppointmentResolution());
+         this.currentAppointment = ste;
      }
+
+    @FXML
+    private void onSaveButtonAction(ActionEvent event) {
+        this.currentAppointment.setPhysicianName(physicianComboBox.getValue().toString());
+        this.currentAppointment.setAppointmentResolution(this.resolutionTextArea.getText());
+        AppointmentStore.getInstance().saveScheduleTableEntryList();
+    }
 }

@@ -17,10 +17,11 @@ public class ScheduleTableEntry {
     private final SimpleStringProperty physicianName = new SimpleStringProperty("");
     private final SimpleStringProperty appointmentDate = new SimpleStringProperty("");
     private final SimpleStringProperty appointmentDescription = new SimpleStringProperty("");
+    private final SimpleStringProperty appointmentResolution = new SimpleStringProperty("");
     private Patient user;
 
     public ScheduleTableEntry() {
-        this("", new Date(), "", (Patient)UserStore.getInstance().getCurrentlyAuthenticatedUser());
+        this("", new Date(), "", (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser());
     }
 
     public ScheduleTableEntry(String name, Date appointmentDate, String appointmentDesc, Patient user) {
@@ -34,7 +35,6 @@ public class ScheduleTableEntry {
     public User getUser() {
         return user;
     }
-
 
     public String getPhysicianName() {
         return physicianName.get();
@@ -58,6 +58,14 @@ public class ScheduleTableEntry {
 
     public void setAppointmentDescription(String appointmentDesc) {
         this.appointmentDescription.set(appointmentDesc);
+    }
+
+    public String getAppointmentResolution() {
+        return this.appointmentResolution.get();
+    }
+
+    public void setAppointmentResolution(String appointmentResolution) {
+       this.appointmentResolution.set(appointmentResolution);
     }
 
 }

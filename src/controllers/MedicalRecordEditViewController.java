@@ -263,10 +263,14 @@ public class MedicalRecordEditViewController implements Initializable {
 
     @FXML
     private void onVisitTableViewClick(MouseEvent event) {
+        //Need to check and make sure user has admin access
+        User u = UserStore.getInstance().getCurrentlyAuthenticatedUser();
+        if(u.isAdmin()){
         ScheduleTableEntry currentlySelectedAppointment = (ScheduleTableEntry) this.visitTableView.getSelectionModel().getSelectedItem();
         //BillDetailController bdc = new BillDetailController();
         //bdc.showBillDetailUI(currentlySelectedBill);
         AppointmentDetailViewController advc = new AppointmentDetailViewController();
         advc.showAppointmentDetailUI(currentlySelectedAppointment);
+        }
     }
 }
