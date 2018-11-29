@@ -64,7 +64,7 @@
                                 <PropertyValueFactory property="physicianName" />
                             </cellValueFactory> 
                         </TableColumn>
-                        <TableColumn prefWidth="361.0" text="Description"> 
+                        <TableColumn prefWidth="361.0" text="Initial Complaint"> 
                             <cellValueFactory>
                                 <PropertyValueFactory property="appointmentDescription" />
                             </cellValueFactory> 
