@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -45,6 +46,8 @@ public class AppointmentDetailViewController implements Initializable {
     @FXML
     private Button saveButton;
     private ScheduleTableEntry currentAppointment;
+    @FXML
+    private Text dateText;
 
     /**
      * Initializes the controller class.
@@ -79,6 +82,7 @@ public class AppointmentDetailViewController implements Initializable {
          this.physicianComboBox.setValue(ste.getPhysicianName());
          this.resolutionTextArea.setText(ste.getAppointmentResolution());
          this.currentAppointment = ste;
+         this.dateText.setText(ste.getAppointmentDate());
      }
 
     @FXML
@@ -86,5 +90,7 @@ public class AppointmentDetailViewController implements Initializable {
         this.currentAppointment.setPhysicianName(physicianComboBox.getValue().toString());
         this.currentAppointment.setAppointmentResolution(this.resolutionTextArea.getText());
         AppointmentStore.getInstance().saveScheduleTableEntryList();
+        Stage s = (Stage)resolutionTextArea.getScene().getWindow();
+        s.close();
     }
 }

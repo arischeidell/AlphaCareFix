@@ -20,9 +20,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import static javafx.scene.input.KeyCode.C;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -55,9 +57,10 @@ public class PatientListController implements Initializable{
     @FXML
     private void onBillTableViewMouseClick(MouseEvent event) {
        Patient currentlySelectedPatient = (Patient) this.patientTableView.getSelectionModel().getSelectedItem();
+       if(currentlySelectedPatient != null){
        MedicalRecordController mrc = new MedicalRecordController();
        mrc.showMedicalRecordUI(currentlySelectedPatient);
-       
+       }
         Stage stage = (Stage)patientTableView.getScene().getWindow();
         stage.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if(patientTableView != null)
@@ -110,5 +113,10 @@ public class PatientListController implements Initializable{
     private void onAddUserButtonAction(ActionEvent event) {
         AddPatientController apc = new AddPatientController();
         apc.showAddPatientUI();
+    }
+
+    @FXML
+    private void onPatientTableSort(SortEvent event) {
+        this.patientTableView.getSelectionModel().clearSelection();
     }
 }

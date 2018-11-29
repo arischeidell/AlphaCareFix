@@ -6,6 +6,7 @@
 package models;
 
 import java.util.Date;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -18,6 +19,7 @@ public class ScheduleTableEntry {
     private final SimpleStringProperty appointmentDate = new SimpleStringProperty("");
     private final SimpleStringProperty appointmentDescription = new SimpleStringProperty("");
     private final SimpleStringProperty appointmentResolution = new SimpleStringProperty("");
+    private final SimpleBooleanProperty prognosisGiven = new SimpleBooleanProperty(false);
     private Patient user;
 
     public ScheduleTableEntry() {
@@ -65,7 +67,18 @@ public class ScheduleTableEntry {
     }
 
     public void setAppointmentResolution(String appointmentResolution) {
+       if(appointmentResolution.isEmpty() ||appointmentResolution == null){
+           this.prognosisGiven.set(false);
+       }
+       else{
+           this.prognosisGiven.set(true);
+       }
        this.appointmentResolution.set(appointmentResolution);
     }
+
+    public boolean getPrognosisGiven() {
+        return prognosisGiven.get();
+    }
+    
 
 }

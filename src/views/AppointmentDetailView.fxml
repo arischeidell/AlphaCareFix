@@ -37,6 +37,8 @@
             <ComboBox fx:id="physicianComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" />
             <Text fx:id="patientText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" GridPane.rowIndex="2" />
+            <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <ScatterChart layoutX="341.0" layoutY="89.0" prefHeight="135.0" prefWidth="200.0">

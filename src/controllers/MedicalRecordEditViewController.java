@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,8 +23,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.SortEvent;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -83,6 +87,8 @@ public class MedicalRecordEditViewController implements Initializable {
     @FXML
     private TableView<ScheduleTableEntry> visitTableView;
     private ObservableList<ScheduleTableEntry> scheduledTableList;
+    @FXML
+    private TableColumn<ScheduleTableEntry, Boolean> prognosisColumn;
 
     /**
      * Initializes the controller class.
@@ -98,6 +104,8 @@ public class MedicalRecordEditViewController implements Initializable {
         this.fluDatePicker.setValue(authU.getRecord().getFlu().getDateAdministered());
         this.mmrDatePicker.setValue(authU.getRecord().getMMR().getDateAdministered());
         this.tetanusDatePicker.setValue(authU.getRecord().getTetanus().getDateAdministered());
+        prognosisColumn.setCellValueFactory(new PropertyValueFactory<>("prognosisGiven"));
+
         this.checkDates();
     }
 
@@ -265,12 +273,25 @@ public class MedicalRecordEditViewController implements Initializable {
     private void onVisitTableViewClick(MouseEvent event) {
         //Need to check and make sure user has admin access
         User u = UserStore.getInstance().getCurrentlyAuthenticatedUser();
+         Stage stage = (Stage)this.visitTableView.getScene().getWindow();
+        stage.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(visitTableView != null)
+                visitTableView.refresh();
+       });        
+        //this.visitTableView.getSelectionModel().
         if(u.isAdmin()){
         ScheduleTableEntry currentlySelectedAppointment = (ScheduleTableEntry) this.visitTableView.getSelectionModel().getSelectedItem();
         //BillDetailController bdc = new BillDetailController();
         //bdc.showBillDetailUI(currentlySelectedBill);
+        if(currentlySelectedAppointment != null){
         AppointmentDetailViewController advc = new AppointmentDetailViewController();
         advc.showAppointmentDetailUI(currentlySelectedAppointment);
         }
+        }
+    }
+
+    @FXML
+    private void onVisitTableViewSort(SortEvent event) {
+        this.visitTableView.getSelectionModel().clearSelection();
     }
 }

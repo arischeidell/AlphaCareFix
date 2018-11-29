@@ -141,9 +141,11 @@ public class HomeController implements Initializable {
 
     @FXML
     private void onPatientListButtonAction(ActionEvent event) {
-       this.closeHomeUI();
+       if(UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin()){
+        this.closeHomeUI();
        PatientListController plc = new PatientListController();
        plc.showPatientListUI();   
+       }
     }
 
 }
