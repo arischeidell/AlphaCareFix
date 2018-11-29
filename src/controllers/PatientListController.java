@@ -30,7 +30,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Patient;
-import models.User;
 import models.UserStore;
 
 /**

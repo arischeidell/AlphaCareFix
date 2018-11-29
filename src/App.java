@@ -22,7 +22,6 @@ public class App extends Application {
     public static void main(String[] args) {
         // TODO code application logic here
         //Comment out line below for production;
-        TestHarness testHarness = new TestHarness();
         launch(args);
     }
 

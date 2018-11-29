@@ -33,9 +33,7 @@ import models.UserStore;
 public class HomeController implements Initializable {
 
     private MedicalRecordController mrc;
-    private MedicationController medController;
 
-    private SearchController sc;
     @FXML
     private Text patientNameText;
     @FXML
@@ -85,16 +83,6 @@ public class HomeController implements Initializable {
 
     public void viewMedicalRecord() {
         this.mrc = new MedicalRecordController();
-    }
-
-    public void viewMeds() {
-        medController = new MedicationController();
-    }
-
-
-
-    public void viewSearch() {
-        sc = new SearchController();
     }
 
     @FXML
