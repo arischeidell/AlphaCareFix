@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -51,9 +52,9 @@ public class HomeController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private Button EditDetailsButton;
-    @FXML
     private Button patientListButton;
+    @FXML
+    private ImageView medicalRecordImage;
 
     //Show the home UI
     public void startHomeUI() {
@@ -118,11 +119,17 @@ public class HomeController implements Initializable {
         this.currentDateText.setText(LocalDate.now().toString());
         this.patientPhoneText.setText(authUser.getPhone());
         this.patientAddressText.setText(authUser.getAddress().toString());
+        //prevents nonadmins from seeing patient list and editing medical records
+        if(!(UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin())){
+            this.patientListButton.setVisible(false);
+            this.medicalRecordImage.setVisible(false);
+        }
     }
 
     //View the patient list UI
     @FXML
     private void onPatientListButtonAction(ActionEvent event) {
+        //Makes sure the user is an admin so they can edit other peoples docs and create users
        if(UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin()){
         this.closeHomeUI();
        PatientListController plc = new PatientListController();

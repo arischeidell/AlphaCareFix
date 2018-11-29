@@ -72,11 +72,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="patientListButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPatientListButtonAction" prefHeight="63.0" prefWidth="322.0" stylesheets="@../resources/homestyle.css" text="Prescriptions" GridPane.rowIndex="3">
+            <Button fx:id="patientListButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPatientListButtonAction" prefHeight="63.0" prefWidth="322.0" stylesheets="@../resources/homestyle.css" text="Medical Record Editor" GridPane.rowIndex="3">
                <graphic>
-                  <ImageView fitHeight="52.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="medicalRecordImage" fitHeight="52.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/icons8-pill-bottle-48.png" />
+                        <Image url="@../resources/icons8-compose-64%20(1).png" />
                      </image>
                   </ImageView>
                </graphic>
