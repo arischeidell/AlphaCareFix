@@ -135,7 +135,7 @@ public class MedicalRecordEditViewController implements Initializable {
         this.mmrDatePicker.setValue(authU.getRecord().getMMR().getDateAdministered());
         this.tetanusDatePicker.setValue(authU.getRecord().getTetanus().getDateAdministered());
         
-        if(!authU.getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername())){
+        if(!authU.getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername()) || UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin()){
             this.chickenPoxDatePicker.setDisable(false);
             this.mmrDatePicker.setDisable(false);
             this.fluDatePicker.setDisable(false);

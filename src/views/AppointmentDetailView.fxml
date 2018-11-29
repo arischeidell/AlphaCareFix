@@ -49,6 +49,6 @@
       </ScatterChart>
       <TextArea fx:id="reasonTextArea" editable="false" layoutX="60.0" layoutY="245.0" prefHeight="91.0" prefWidth="200.0" />
       <Text layoutX="60.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Complaint/Appointment Rationale" />
-      <Button fx:id="saveButton" layoutX="484.0" layoutY="348.0" mnemonicParsing="false" onAction="#onSaveButtonActoin" prefHeight="33.0" prefWidth="95.0" text="Save" />
+      <Button fx:id="saveButton" layoutX="484.0" layoutY="348.0" mnemonicParsing="false" onAction="#onSaveButtonAction" prefHeight="33.0" prefWidth="95.0" text="Save" />
    </children>
 </AnchorPane>
