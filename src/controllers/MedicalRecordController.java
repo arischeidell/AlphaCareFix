@@ -144,7 +144,7 @@ public class MedicalRecordController implements Initializable {
 
             MedicalRecordController mrc = fxmlLoader.getController();
             mrc.setPatient(p);
-            mrc.homeButton.setVisible(false);
+            //mrc.homeButton.setVisible(false);
 
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
