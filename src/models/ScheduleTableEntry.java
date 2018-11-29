@@ -6,6 +6,7 @@
 package models;
 
 import java.util.Date;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -17,16 +18,24 @@ public class ScheduleTableEntry {
     private final SimpleStringProperty physicianName = new SimpleStringProperty("");
     private final SimpleStringProperty appointmentDate = new SimpleStringProperty("");
     private final SimpleStringProperty appointmentDescription = new SimpleStringProperty("");
+    private final SimpleStringProperty appointmentResolution = new SimpleStringProperty("");
+    private final SimpleBooleanProperty prognosisGiven = new SimpleBooleanProperty(false);
+    private Patient user;
 
     public ScheduleTableEntry() {
-        this("", new Date(), "");
+        this("", new Date(), "", (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser());
     }
 
-    public ScheduleTableEntry(String name, Date appointmentDate, String appointmentDesc) {
+    public ScheduleTableEntry(String name, Date appointmentDate, String appointmentDesc, Patient user) {
         setPhysicianName(name);
         setAppointmentDate(appointmentDate.toString());
         this.setAppointmentDescription(appointmentDesc);
+        this.user = user;
 
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public String getPhysicianName() {
@@ -52,5 +61,24 @@ public class ScheduleTableEntry {
     public void setAppointmentDescription(String appointmentDesc) {
         this.appointmentDescription.set(appointmentDesc);
     }
+
+    public String getAppointmentResolution() {
+        return this.appointmentResolution.get();
+    }
+
+    public void setAppointmentResolution(String appointmentResolution) {
+       if(appointmentResolution.isEmpty() ||appointmentResolution == null){
+           this.prognosisGiven.set(false);
+       }
+       else{
+           this.prognosisGiven.set(true);
+       }
+       this.appointmentResolution.set(appointmentResolution);
+    }
+
+    public boolean getPrognosisGiven() {
+        return prognosisGiven.get();
+    }
+    
 
 }

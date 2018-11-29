@@ -19,6 +19,7 @@ public abstract class User {
     private String username;
     private char[] password;
     private ArrayList<Permission> permissions;
+    private boolean isAdmin = false;
 
     /**
      * Constructs a user object.
@@ -32,6 +33,14 @@ public abstract class User {
         this.permissions = new ArrayList();
         this.firstName = "";
         this.lastName = "";
+    }
+
+    public void setPermissions(ArrayList<Permission> permissions) {
+        this.permissions = permissions;
+    }
+    
+    public User(){
+        
     }
 
     public String getFirstName() {
@@ -50,14 +59,17 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-    public User() {
-        this.username = "";
-        this.firstName = "";
-        this.lastName = "";
-        char[] pw = {};
-        this.password = pw;
-        this.permissions = new ArrayList();
+    public boolean isAdmin(){
+        return this.isAdmin;
     }
+//    public User() {
+//        this.username = "";
+//        this.firstName = "";
+//        this.lastName = "";
+//        char[] pw = {};
+//        this.password = pw;
+//        this.permissions = new ArrayList();
+//    }
 
     /**
      * Gets the username for a user.

@@ -35,6 +35,8 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.AppointmentStore;
+import models.Patient;
+import models.UserStore;
 
 /**
  *
@@ -77,7 +79,7 @@ public class ScheduleController implements Initializable {
         Date date = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
         String physName = physicianSelect.getSelectionModel().getSelectedItem().toString();
         String appDesc = reasonTextField.getText();
-        ScheduleTableEntry newEntry = new ScheduleTableEntry(physName, date, appDesc);
+        ScheduleTableEntry newEntry = new ScheduleTableEntry(physName, date, appDesc, (Patient)UserStore.getInstance().getCurrentlyAuthenticatedUser());
         scheduledTable.getItems().add(newEntry);
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
         savedScheduleData.add(newEntry);
@@ -91,6 +93,7 @@ public class ScheduleController implements Initializable {
         this.timeSelect.getSelectionModel().clearSelection();
         this.appointmentDatePicker.getEditor().clear();
         this.appointmentDatePicker.setValue(null);
+        this.reasonTextField.setText("");
     }
 
     @FXML
@@ -108,7 +111,14 @@ public class ScheduleController implements Initializable {
         List<LocalTime> availibleTimes = getAvailibleTimes();
         timeSelect.setItems(FXCollections.observableArrayList(availibleTimes));
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
-        scheduledTableList = FXCollections.observableArrayList(savedScheduleData);
+           List<ScheduleTableEntry> usersScheduleData = new ArrayList<>();
+          for(ScheduleTableEntry ste : savedScheduleData){
+        if(ste.getUser().getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername())){
+            usersScheduleData.add(ste);
+        }                
+        }
+        
+        scheduledTableList = FXCollections.observableArrayList(usersScheduleData);
         scheduledTable.setItems(this.scheduledTableList);
 
     }

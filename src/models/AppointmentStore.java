@@ -7,6 +7,10 @@ package models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,6 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -41,7 +46,15 @@ public class AppointmentStore {
     }
 
     public void loadScheduleTableEntryList() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+              @Override
+              public LocalDate deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                   int month = json.getAsJsonObject().get("month").getAsNumber().intValue();
+                   int year = json.getAsJsonObject().get("year").getAsNumber().intValue();
+                   int day =  json.getAsJsonObject().get("day").getAsNumber().intValue();
+                  return LocalDate.of(year, month, day);
+              }
+          }).create();
 
         try {
 

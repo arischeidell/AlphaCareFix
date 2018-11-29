@@ -102,4 +102,42 @@ public class MedicalRecord {
     public void removeMed(Medication m) {
 
     }
+
+    public ArrayList<Vaccine> getVacs() {
+        return vacs;
+    }
+
+    public Vaccine getMMR(){
+         for(Vaccine v : vacs){
+            if(v.getName().equals("MMR"))
+                return v;
+        }
+        return null;
+    }
+    
+    public Vaccine getChickenpox(){
+         for(Vaccine v : vacs){
+            if(v.getName().equals("Chickenpox"))
+                return v;
+        }
+        return null;
+    }
+    
+    public Vaccine getTetanus(){
+         for(Vaccine v : vacs){
+            if(v.getName().equals("Tetanus"))
+                return v;
+        }
+        return null;
+    }
+    public Vaccine getFlu(){
+        for(Vaccine v : vacs){
+            if(v.getName().equals("Flu"))
+                return v;
+        }
+        return null;
+    }
+    
+    
 }
+

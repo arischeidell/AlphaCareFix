@@ -5,7 +5,10 @@
  */
 package models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
 
 /**
  *
@@ -13,25 +16,25 @@ import java.time.LocalDateTime;
  */
 public class Vaccine {
 
-    private String dateAdministered;
+    private LocalDate dateAdministered;
     private String name;
 
-    public Vaccine(String dateAdministered, String name) {
+    public Vaccine(LocalDate dateAdministered, String name) {
         this.dateAdministered = dateAdministered;
         this.name = name;
     }
 
     public Vaccine() {
-        this.dateAdministered = "";
-        this.name = "";
+//        this.dateAdministered = LocalDate.now();
+//        this.name = "";
     }
 
     public Vaccine(String name) {
-        this.dateAdministered = "---";
+        this.dateAdministered = LocalDate.of(1900, 1, 1);
         this.name = name;
     }
 
-    public String getDateAdministered() {
+    public LocalDate getDateAdministered() {
         return dateAdministered;
     }
 
@@ -39,7 +42,7 @@ public class Vaccine {
         return name;
     }
 
-    public void setDateAdministered(String dateAdministered) {
+    public void setDateAdministered(LocalDate dateAdministered) {
         this.dateAdministered = dateAdministered;
     }
 

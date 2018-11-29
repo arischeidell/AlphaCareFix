@@ -7,6 +7,10 @@ package models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,6 +19,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +51,7 @@ public class UserStore {
 //        p1.setAge(55);
 //        p1.setHeight(66.5);
 //        p1.setWeight(145.3);
+//        saveUserList();
         loadUserList();
     }
 
@@ -77,9 +87,22 @@ public class UserStore {
         return FXCollections.observableArrayList(patientList);
     }
     
+    public void addUser(User u){
+        userList.add(u);
+        this.saveUserList();
+    }
+    
     public void loadUserList() {
-        Gson gson = new Gson();
-
+        //Gson gson = new Gson();
+             Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+              @Override
+              public LocalDate deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                   int month = json.getAsJsonObject().get("month").getAsNumber().intValue();
+                   int year = json.getAsJsonObject().get("year").getAsNumber().intValue();
+                   int day =  json.getAsJsonObject().get("day").getAsNumber().intValue();
+                  return LocalDate.of(year, month, day);
+              }
+          }).create();
         try {
 
             BufferedReader br = new BufferedReader(

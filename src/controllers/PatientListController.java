@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,9 +20,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import static javafx.scene.input.KeyCode.C;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -53,6 +57,17 @@ public class PatientListController implements Initializable{
 
     @FXML
     private void onBillTableViewMouseClick(MouseEvent event) {
+       Patient currentlySelectedPatient = (Patient) this.patientTableView.getSelectionModel().getSelectedItem();
+       if(currentlySelectedPatient != null){
+       MedicalRecordController mrc = new MedicalRecordController();
+       mrc.showMedicalRecordUI(currentlySelectedPatient);
+       }
+        Stage stage = (Stage)patientTableView.getScene().getWindow();
+        stage.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(patientTableView != null)
+                patientTableView.refresh();
+       });
+       
     }
 
     @FXML
@@ -72,6 +87,7 @@ public class PatientListController implements Initializable{
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         heightColumn.setCellValueFactory(new PropertyValueFactory<>("height"));
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+       
     }
     
     public void showPatientListUI(){
@@ -84,7 +100,7 @@ public class PatientListController implements Initializable{
             stage.setTitle("AlphaCare");
             stage.setScene(new Scene(root1));
             stage.show();
-
+            
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,5 +109,16 @@ public class PatientListController implements Initializable{
     public void closePatientListUI(){
         Stage stage = (Stage) homeButton.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void onAddUserButtonAction(ActionEvent event) {
+        AddPatientController apc = new AddPatientController();
+        apc.showAddPatientUI();
+    }
+
+    @FXML
+    private void onPatientTableSort(SortEvent event) {
+        this.patientTableView.getSelectionModel().clearSelection();
     }
 }
