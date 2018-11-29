@@ -109,11 +109,13 @@ public class MedicalRecordEditViewController implements Initializable {
         this.checkDates();
     }
 
+    //close the edit UI
     public void closeEditUI() {
         Stage stage = (Stage) this.nameField.getScene().getWindow();
         stage.close();
     }
 
+    //show the edit UI
     public void showEditUI(User u) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordEditView.fxml"));
@@ -129,21 +131,22 @@ public class MedicalRecordEditViewController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void setUser(User u){
-                 authU = (Patient) u;
 
-            this.ageField.setText(Integer.toString(authU.getAge()));
+    //set the User
+    public void setUser(User u) {
+        authU = (Patient) u;
+
+        this.ageField.setText(Integer.toString(authU.getAge()));
         this.weightField.setText(Double.toString(authU.getWeight()));
         this.heightField.setText(Double.toString(authU.getHeight()));
         this.nameField.setText(authU.getFirstName() + " " + authU.getLastName());
-        
-         this.chickenPoxDatePicker.setValue(authU.getRecord().getChickenpox().getDateAdministered());
+
+        this.chickenPoxDatePicker.setValue(authU.getRecord().getChickenpox().getDateAdministered());
         this.fluDatePicker.setValue(authU.getRecord().getFlu().getDateAdministered());
         this.mmrDatePicker.setValue(authU.getRecord().getMMR().getDateAdministered());
         this.tetanusDatePicker.setValue(authU.getRecord().getTetanus().getDateAdministered());
-        
-        if(!authU.getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername()) || UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin()){
+
+        if (!authU.getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername()) || UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin()) {
             this.chickenPoxDatePicker.setDisable(false);
             this.mmrDatePicker.setDisable(false);
             this.fluDatePicker.setDisable(false);
@@ -159,23 +162,25 @@ public class MedicalRecordEditViewController implements Initializable {
         }
         scheduledTableList = FXCollections.observableArrayList(usersScheduleData);
         visitTableView.setItems(this.scheduledTableList);
-        
+
     }
 
-    private void checkDates(){
+    //check if dates are valid
+    private void checkDates() {
         ArrayList<DatePicker> datePickerList = new ArrayList<>();
         datePickerList.add(fluDatePicker);
         datePickerList.add(mmrDatePicker);
         datePickerList.add(tetanusDatePicker);
         datePickerList.add(chickenPoxDatePicker);
-        for(DatePicker dp : datePickerList){
-            if(dp.getValue().getYear() == 1900){
+        for (DatePicker dp : datePickerList) {
+            if (dp.getValue().getYear() == 1900) {
                 dp.setValue(null);
             }
         }
 
     }
-    
+
+    //save changes
     @FXML
     private void onSaveButtonAction(ActionEvent event) {
         Patient authPatient = authU;
@@ -192,49 +197,49 @@ public class MedicalRecordEditViewController implements Initializable {
             authPatient.setFirstName(this.nameField.getText().split(" ")[0]);
             authPatient.setLastName(this.nameField.getText().split(" ")[1]);
         }
-       if(this.chickenPoxDatePicker.getValue() != null){
-           for(Vaccine v : authPatient.getRecord().getVacs()){
-                if(v.getName().equals("Chickenpox")){
+        if (this.chickenPoxDatePicker.getValue() != null) {
+            for (Vaccine v : authPatient.getRecord().getVacs()) {
+                if (v.getName().equals("Chickenpox")) {
                     v.setDateAdministered(this.chickenPoxDatePicker.getValue());
                 }
-           }
-       }
-       
-       if(this.fluDatePicker.getValue() != null){
-           for(Vaccine v : authPatient.getRecord().getVacs()){
-                if(v.getName().equals("Flu")){
+            }
+        }
+
+        if (this.fluDatePicker.getValue() != null) {
+            for (Vaccine v : authPatient.getRecord().getVacs()) {
+                if (v.getName().equals("Flu")) {
                     v.setDateAdministered(this.fluDatePicker.getValue());
                 }
-           }
-       }
-       
-       if(this.mmrDatePicker.getValue() != null){
-           for(Vaccine v : authPatient.getRecord().getVacs()){
-                if(v.getName().equals("MMR")){
+            }
+        }
+
+        if (this.mmrDatePicker.getValue() != null) {
+            for (Vaccine v : authPatient.getRecord().getVacs()) {
+                if (v.getName().equals("MMR")) {
                     v.setDateAdministered(this.mmrDatePicker.getValue());
                 }
-           }
-       }
-       
-       if(this.tetanusDatePicker.getValue() != null){
-           for(Vaccine v : authPatient.getRecord().getVacs()){
-                if(v.getName().equals("Tetanus")){
+            }
+        }
+
+        if (this.tetanusDatePicker.getValue() != null) {
+            for (Vaccine v : authPatient.getRecord().getVacs()) {
+                if (v.getName().equals("Tetanus")) {
                     v.setDateAdministered(this.tetanusDatePicker.getValue());
                 }
-           }
-       }
+            }
+        }
         UserStore.getInstance().saveUserList();
         this.closeEditUI();
         MedicalRecordController mc = new MedicalRecordController();
-        if(authU.equals(UserStore.getInstance().getCurrentlyAuthenticatedUser())){
-        mc.showMedicalRecordUI();
-        }
-        else{
+        if (authU.equals(UserStore.getInstance().getCurrentlyAuthenticatedUser())) {
+            mc.showMedicalRecordUI();
+        } else {
             mc.showMedicalRecordUI(authU);
         }
 
     }
 
+    //try to parse an int. If it works, return true, if not, return false
     private boolean tryParseInt(String value) {
         try {
             Integer.parseInt(value);
@@ -244,6 +249,7 @@ public class MedicalRecordEditViewController implements Initializable {
         }
     }
 
+    //try to parse an int. If it works, return true, if not, return false
     private boolean tryParseDouble(String value) {
         try {
             Double.parseDouble(value);
@@ -269,27 +275,30 @@ public class MedicalRecordEditViewController implements Initializable {
     private void onChickenPoxDatePickerAction(ActionEvent event) {
     }
 
+    //Show appointment details
     @FXML
     private void onVisitTableViewClick(MouseEvent event) {
         //Need to check and make sure user has admin access
         User u = UserStore.getInstance().getCurrentlyAuthenticatedUser();
-         Stage stage = (Stage)this.visitTableView.getScene().getWindow();
+        Stage stage = (Stage) this.visitTableView.getScene().getWindow();
         stage.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(visitTableView != null)
+            if (visitTableView != null) {
                 visitTableView.refresh();
-       });        
+            }
+        });
         //this.visitTableView.getSelectionModel().
-        if(u.isAdmin()){
-        ScheduleTableEntry currentlySelectedAppointment = (ScheduleTableEntry) this.visitTableView.getSelectionModel().getSelectedItem();
-        //BillDetailController bdc = new BillDetailController();
-        //bdc.showBillDetailUI(currentlySelectedBill);
-        if(currentlySelectedAppointment != null){
-        AppointmentDetailViewController advc = new AppointmentDetailViewController();
-        advc.showAppointmentDetailUI(currentlySelectedAppointment);
-        }
+        if (u.isAdmin()) {
+            ScheduleTableEntry currentlySelectedAppointment = (ScheduleTableEntry) this.visitTableView.getSelectionModel().getSelectedItem();
+            //BillDetailController bdc = new BillDetailController();
+            //bdc.showBillDetailUI(currentlySelectedBill);
+            if (currentlySelectedAppointment != null) {
+                AppointmentDetailViewController advc = new AppointmentDetailViewController();
+                advc.showAppointmentDetailUI(currentlySelectedAppointment);
+            }
         }
     }
 
+    
     @FXML
     private void onVisitTableViewSort(SortEvent event) {
         this.visitTableView.getSelectionModel().clearSelection();

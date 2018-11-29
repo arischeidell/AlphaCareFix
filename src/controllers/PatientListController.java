@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +23,6 @@ import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import static javafx.scene.input.KeyCode.C;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -54,6 +52,7 @@ public class PatientListController implements Initializable{
     private Button homeButton;
     private ObservableList<Patient> patientList;
 
+    //Opens a detailed view for the bill (the user medical record)
     @FXML
     private void onBillTableViewMouseClick(MouseEvent event) {
        Patient currentlySelectedPatient = (Patient) this.patientTableView.getSelectionModel().getSelectedItem();
@@ -69,6 +68,7 @@ public class PatientListController implements Initializable{
        
     }
 
+    //Show home UI
     @FXML
     private void onHomeButtonAction(ActionEvent event) {
         this.closePatientListUI();
@@ -76,6 +76,7 @@ public class PatientListController implements Initializable{
         homeController.startHomeUI();
     }
 
+    //init components
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         UserStore.getInstance().loadUserList();
@@ -89,6 +90,7 @@ public class PatientListController implements Initializable{
        
     }
     
+    //show the patient list UI
     public void showPatientListUI(){
           try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/PatientListView.fxml"));
@@ -105,11 +107,13 @@ public class PatientListController implements Initializable{
         }
     }
     
+    //close the patient list UI
     public void closePatientListUI(){
         Stage stage = (Stage) homeButton.getScene().getWindow();
         stage.close();
     }
 
+    //Show add patient UI
     @FXML
     private void onAddUserButtonAction(ActionEvent event) {
         AddPatientController apc = new AddPatientController();

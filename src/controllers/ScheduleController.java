@@ -8,7 +8,6 @@ package controllers;
 import java.io.IOException;
 import models.ScheduleTableEntry;
 import java.net.URL;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -74,6 +73,7 @@ public class ScheduleController implements Initializable {
         //Should update aval. times
     }
 
+    //Save changes
     @FXML
     private void onSaveButtonPress(ActionEvent event) {
         LocalDate localDate = appointmentDatePicker.getValue();
@@ -82,7 +82,7 @@ public class ScheduleController implements Initializable {
         Date date = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
         String physName = physicianSelect.getSelectionModel().getSelectedItem().toString();
         String appDesc = reasonTextField.getText();
-        ScheduleTableEntry newEntry = new ScheduleTableEntry(physName, date, appDesc, (Patient)UserStore.getInstance().getCurrentlyAuthenticatedUser());
+        ScheduleTableEntry newEntry = new ScheduleTableEntry(physName, date, appDesc, (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser());
         scheduledTable.getItems().add(newEntry);
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
         savedScheduleData.add(newEntry);
@@ -90,6 +90,7 @@ public class ScheduleController implements Initializable {
         this.onClearButtonPress(event);
     }
 
+    //Clear values
     @FXML
     private void onClearButtonPress(ActionEvent event) {
         this.physicianSelect.getSelectionModel().clearSelection();
@@ -104,6 +105,7 @@ public class ScheduleController implements Initializable {
 
     }
 
+    //init components
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -114,18 +116,19 @@ public class ScheduleController implements Initializable {
         List<LocalTime> availibleTimes = getAvailibleTimes();
         timeSelect.setItems(FXCollections.observableArrayList(availibleTimes));
         List<ScheduleTableEntry> savedScheduleData = AppointmentStore.getInstance().getScheduleTableStore();
-           List<ScheduleTableEntry> usersScheduleData = new ArrayList<>();
-          for(ScheduleTableEntry ste : savedScheduleData){
-        if(ste.getUser().getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername())){
-            usersScheduleData.add(ste);
-        }                
+        List<ScheduleTableEntry> usersScheduleData = new ArrayList<>();
+        for (ScheduleTableEntry ste : savedScheduleData) {
+            if (ste.getUser().getUsername().equals(UserStore.getInstance().getCurrentlyAuthenticatedUser().getUsername())) {
+                usersScheduleData.add(ste);
+            }
         }
-        
+
         scheduledTableList = FXCollections.observableArrayList(usersScheduleData);
         scheduledTable.setItems(this.scheduledTableList);
 
     }
 
+    //Get the list of available times
     private List<LocalTime> getAvailibleTimes() {
         ArrayList<LocalTime> times = new ArrayList<>();
         for (int hoursInDay = 8; hoursInDay < 17; hoursInDay++) {
@@ -135,11 +138,13 @@ public class ScheduleController implements Initializable {
         return times;
     }
 
+    //Close the schedule UI
     public void closeScheduleUI() {
         Stage stage = (Stage) this.appointmentDatePicker.getScene().getWindow();
         stage.close();
     }
 
+    //Show the schedule UI
     public void showScheduleUI() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/ScheduleAppointment.fxml"));
@@ -155,12 +160,12 @@ public class ScheduleController implements Initializable {
         }
     }
 
+    //Show the home UI
     @FXML
     private void goHome(ActionEvent event) {
         this.closeScheduleUI();
         HomeController homeController = new HomeController();
         homeController.startHomeUI();
     }
-
 
 }
