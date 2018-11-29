@@ -108,6 +108,11 @@ public class AddPatientController implements Initializable {
       if(!this.tryParseDouble(this.heightTextField.getText())){
           return false;
       }
+      String username = this.usernameTextField.getText();
+      if(UserStore.getInstance().doesUserExist(username)){
+          return false;
+      }
+      
       return true;
     }
     

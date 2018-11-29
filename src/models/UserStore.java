@@ -126,6 +126,14 @@ public class UserStore {
         }
     }
 
+    public boolean doesUserExist(String username){
+        for(User u : this.userList){
+            if(u.getUsername().equalsIgnoreCase(username)){
+                return true;
+            }
+        }
+        return false;
+    }
     public void saveUserList() {
 
         File file = new File(fileName);

@@ -83,7 +83,7 @@ public class MedicalRecordController implements Initializable {
     private Text MMRDateText;
     @FXML
     private Text chickenBoxDateText;
-
+    boolean isAdminView = false;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("MedicalRecordController");
@@ -141,9 +141,10 @@ public class MedicalRecordController implements Initializable {
             stage.setTitle("AlphaCare");
             stage.setScene(new Scene(root1));
             stage.show();
-
+            
             MedicalRecordController mrc = fxmlLoader.getController();
             mrc.setPatient(p);
+         
             //mrc.homeButton.setVisible(false);
 
         } catch (IOException ex) {
@@ -178,13 +179,17 @@ public class MedicalRecordController implements Initializable {
         scheduledTableList = FXCollections.observableArrayList(usersScheduleData);
         visitTableView.setItems(this.scheduledTableList);
         this.selectedUser = p;
+        this.isAdminView = true;
+        this.logoutButton.setText("Patient List");
     }
 
     @FXML
     private void goHome(ActionEvent event) {
         this.closeMedicalRecordUI();
+        if(!this.isAdminView){
         HomeController homeController = new HomeController();
         homeController.startHomeUI();
+        }
     }
 
     @FXML
