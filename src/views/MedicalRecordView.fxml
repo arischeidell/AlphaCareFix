@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicalRecordController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicalRecordController">
     <children>
-        <AnchorPane id="AnchorPane" layoutY="41.0" prefHeight="400.0" prefWidth="600.0">
+        <AnchorPane id="AnchorPane" layoutX="-1.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="800.0" style="-fx-background-color: #fff;">
             <children>
-                <Text fx:id="nameText" layoutX="27.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" underline="true" />
-                <Text fx:id="ageText" layoutX="27.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:" underline="true" />
-                <Text fx:id="heightText" layoutX="254.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height:" underline="true" />
-                <Text fx:id="weightText" layoutX="252.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight:" underline="true" />
-                <Line endX="432.0" endY="-52.0" layoutX="168.0" layoutY="144.0" startX="-168.0" startY="-52.0" />
-                <Text layoutX="27.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccines" />
-                <GridPane layoutX="27.0" layoutY="124.0" prefHeight="54.0" prefWidth="548.0">
+                <Text fx:id="nameText" layoutX="169.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" underline="true" />
+                <Text fx:id="ageText" layoutX="174.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:" underline="true" />
+                <Text fx:id="heightText" layoutX="451.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height:" underline="true" />
+                <Text fx:id="weightText" layoutX="450.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight:" underline="true" />
+                <Line endX="633.0" endY="-52.0" layoutX="168.0" layoutY="144.0" startX="-168.0" startY="-52.0" stroke="RED" />
+                <Text layoutX="368.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccines" />
+                <GridPane alignment="CENTER" layoutX="117.0" layoutY="121.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="548.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -39,14 +41,14 @@
                         <Text fx:id="vac3Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Tetanus; Date Administered: ---" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
-                <Line endX="422.5" endY="37.0" layoutX="178.0" layoutY="154.0" startX="-178.0" startY="37.0" />
-                <Text fx:id="visitText" layoutX="27.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visits" />
-                <Button fx:id="profileEditButton" layoutX="533.0" layoutY="53.0" mnemonicParsing="false" onAction="#onEditButtonEvent" text="Edit" />
-                <Text fx:id="nameValueText" layoutX="73.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                <Text fx:id="ageValueText" layoutX="73.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                <Text fx:id="heightValueText" layoutX="301.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                <Text fx:id="weightValueText" layoutX="301.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                <TableView fx:id="visitTableView" layoutX="20.0" layoutY="221.0" prefHeight="171.0" prefWidth="559.0">
+                <Line endX="623.0" endY="37.0" layoutX="178.0" layoutY="154.0" startX="-178.0" startY="37.0" stroke="RED" />
+                <Text fx:id="visitText" layoutX="377.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visits" />
+                <Button fx:id="profileEditButton" layoutX="739.0" layoutY="40.0" mnemonicParsing="false" onAction="#onEditButtonEvent" styleClass="button2" stylesheets="@../resources/homestyle.css" text="Edit" textFill="WHITE" />
+                <Text fx:id="nameValueText" layoutX="219.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <Text fx:id="ageValueText" layoutX="218.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <Text fx:id="heightValueText" layoutX="501.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <Text fx:id="weightValueText" layoutX="500.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <TableView fx:id="visitTableView" layoutX="62.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="658.0">
                     <columns>
                         <TableColumn prefWidth="75.0" text="Date"> 
                             <cellValueFactory>
@@ -67,11 +69,20 @@
                 </TableView>
             </children>
         </AnchorPane>
-        <Text layoutX="148.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Medical Record">
-            <font>
-                <Font size="31.0" />
-            </font>
-        </Text>
-        <Button fx:id="homeButton" layoutX="25.0" layoutY="20.0" mnemonicParsing="false" onAction="#goHome" text="Home" />
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="800.0" style="-fx-background-color: #6747CD;">
+         <children>
+            <Button fx:id="logoutButton" layoutX="638.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goHome" prefHeight="45.0" prefWidth="139.0" styleClass="button2" stylesheets="@../resources/homestyle.css" text="Home" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Label layoutX="79.0" layoutY="36.0" text="AlphaCare" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="155.0" layoutY="94.0" text="Medical Record" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

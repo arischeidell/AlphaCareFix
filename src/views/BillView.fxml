@@ -5,28 +5,35 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BillController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BillController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="billTableView" layoutX="32.0" layoutY="89.0" onMouseClicked="#onBillTableViewMouseClick" prefHeight="271.0" prefWidth="567.0">
+            <TableView fx:id="billTableView" layoutX="10.0" layoutY="185.0" onMouseClicked="#onBillTableViewMouseClick" prefHeight="406.0" prefWidth="778.0">
               <columns>
-                <TableColumn fx:id="dateTableColumn" prefWidth="75.0" text="Date" />
-                <TableColumn fx:id="itemTableColumn" prefWidth="234.0" text="Item" />
-                  <TableColumn fx:id="costTableColumn" prefWidth="85.0" text="Total Cost" />
-                  <TableColumn fx:id="insuranceTableColumn" prefWidth="99.0" text="Insurance Cover" />
-                  <TableColumn fx:id="dueTableColumn" prefWidth="73.0" text="Due" />
+                <TableColumn fx:id="dateTableColumn" prefWidth="107.19998168945312" text="Date" />
+                <TableColumn fx:id="itemTableColumn" prefWidth="202.4000244140625" text="Item" />
+                  <TableColumn fx:id="costTableColumn" prefWidth="151.199951171875" text="Total Cost" />
+                  <TableColumn fx:id="insuranceTableColumn" prefWidth="120.0" text="Insurance Cover" />
+                  <TableColumn fx:id="dueTableColumn" prefWidth="196.800048828125" text="Due" />
               </columns>
             </TableView>
-            <Label layoutX="222.0" layoutY="10.0" prefHeight="43.0" prefWidth="196.0" text="Bill Information">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="800.0" style="-fx-background-color: #6747CD;" />
+            <Label layoutX="79.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="AlphaCare" textFill="WHITE">
                <font>
-                  <Font size="29.0" />
+                  <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="homeButton" layoutX="32.0" layoutY="19.0" mnemonicParsing="false" onAction="#onHomeButtonAction" text="Home" />
+            <Label layoutX="155.0" layoutY="94.0" text="Bill View" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="homeButton" layoutX="624.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHomeButtonAction" prefHeight="45.0" prefWidth="139.0" styleClass="button2" stylesheets="@../resources/homestyle.css" text="Home" textFill="WHITE" />
          </children>
     </AnchorPane>
   </children>

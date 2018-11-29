@@ -24,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.AppointmentStore;
 import models.Patient;
 import models.ScheduleTableEntry;
@@ -48,8 +49,6 @@ public class MedicalRecordController implements Initializable {
     @FXML
     private Button profileEditButton;
     @FXML
-    private Button homeButton;
-    @FXML
     private Text vac1Text;
     @FXML
     private Text vac2Text;
@@ -71,6 +70,8 @@ public class MedicalRecordController implements Initializable {
     private TableView visitTableView;
 
     private ObservableList<ScheduleTableEntry> scheduledTableList;
+    @FXML
+    private Button logoutButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,6 +98,7 @@ public class MedicalRecordController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("AlphaCare");
             stage.setScene(new Scene(root1));
             stage.show();

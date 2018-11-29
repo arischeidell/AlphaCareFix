@@ -5,28 +5,38 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientListController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientListController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFF;" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="patientTableView" layoutX="32.0" layoutY="89.0" onMouseClicked="#onBillTableViewMouseClick" prefHeight="271.0" prefWidth="567.0">
+            <TableView fx:id="patientTableView" layoutX="20.0" layoutY="191.0" onMouseClicked="#onBillTableViewMouseClick" prefHeight="394.0" prefWidth="758.0">
               <columns>
-                <TableColumn fx:id="firstNameColumn" prefWidth="140.0" text="First Name" />
-                <TableColumn fx:id="lastNameColumn" prefWidth="150.0" text="Last Name" />
-                  <TableColumn fx:id="ageColumn" prefWidth="104.0" text="Age" />
-                  <TableColumn fx:id="heightColumn" prefWidth="99.0" text="Height" />
-                  <TableColumn fx:id="weightColumn" prefWidth="73.0" text="Weight" />
+                <TableColumn fx:id="firstNameColumn" prefWidth="192.79998779296875" text="First Name" />
+                <TableColumn fx:id="lastNameColumn" prefWidth="178.4000244140625" text="Last Name" />
+                  <TableColumn fx:id="ageColumn" prefWidth="75.20001220703125" text="Age" />
+                  <TableColumn fx:id="heightColumn" prefWidth="146.4000244140625" text="Height" />
+                  <TableColumn fx:id="weightColumn" prefWidth="166.4000244140625" text="Weight" />
               </columns>
             </TableView>
-            <Label layoutX="242.0" layoutY="10.0" prefHeight="43.0" prefWidth="147.0" text="All Patients">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="800.0" style="-fx-background-color: #6747CD;">
+               <children>
+                  <Button fx:id="homeButton" layoutX="624.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHomeButtonAction" prefHeight="45.0" prefWidth="139.0" styleClass="button2" stylesheets="@../resources/homestyle.css" text="Home" textFill="WHITE" />
+               </children>
+            </Pane>
+            <Label layoutX="79.0" layoutY="36.0" text="AlphaCare" textFill="WHITE">
                <font>
-                  <Font size="29.0" />
+                  <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="homeButton" layoutX="32.0" layoutY="19.0" mnemonicParsing="false" onAction="#onHomeButtonAction" text="Home" />
+            <Label layoutX="155.0" layoutY="94.0" text="Hospital Management" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
     </AnchorPane>
   </children>
