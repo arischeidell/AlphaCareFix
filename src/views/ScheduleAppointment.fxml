@@ -58,7 +58,7 @@
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="155.0" layoutY="94.0" text="Hospital Management" textFill="WHITE">
+      <Label layoutX="155.0" layoutY="94.0" text="Schedule Appointment" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
