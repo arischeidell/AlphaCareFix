@@ -94,22 +94,28 @@ public class AddPatientController implements Initializable {
     }
 
     //Validate that the patient values are of the correct type
-    private boolean validatePatient() {
-        for (TextField tf : this.fieldList) {
-            if (tf.getText().isEmpty() || tf.getText() == null) {
-                return false;
-            }
-        }
-        if (!this.tryParseDouble(this.weightTextField.getText())) {
-            return false;
-        }
-        if (!this.tryParseDouble(this.ageTextField.getText())) {
-            return false;
-        }
-        if (!this.tryParseDouble(this.heightTextField.getText())) {
-            return false;
-        }
-        return true;
+    
+    private boolean validatePatient(){
+      for(TextField tf : this.fieldList){
+          if(tf.getText().isEmpty() || tf.getText() == null){
+              return false;
+          }
+      }
+      if(!this.tryParseDouble(this.weightTextField.getText())){
+          return false;
+      }
+      if(!this.tryParseDouble(this.ageTextField.getText())){
+          return false;
+      }
+      if(!this.tryParseDouble(this.heightTextField.getText())){
+          return false;
+      }
+      String username = this.usernameTextField.getText();
+      if(UserStore.getInstance().doesUserExist(username)){
+          return false;
+      }
+      
+      return true;
     }
 
     //Show the add patient UI
