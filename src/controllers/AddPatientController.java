@@ -57,6 +57,7 @@ public class AddPatientController implements Initializable {
     @FXML
     private Button saveButton;
     private ArrayList<TextField> fieldList;
+
     /**
      * Initializes the controller class.
      */
@@ -74,45 +75,46 @@ public class AddPatientController implements Initializable {
         fieldList.add(heightTextField);
         fieldList.add(weightTextField);
         fieldList.add(ageTextField);
-    }    
+    }
 
     @FXML
     private void onSaveButtonAction(ActionEvent event) {
-        if(validatePatient()){
-            Patient p = new Patient(this.usernameTextField.getText(), this.passwordPasswordField.getText().toCharArray(), 
-                    new Address(streetTextField.getText(),"",this.cityTextField.getText(), "", this.zipTextField.getText()), "NA");
+        if (validatePatient()) {
+            Patient p = new Patient(this.usernameTextField.getText(), this.passwordPasswordField.getText().toCharArray(),
+                    new Address(streetTextField.getText(), "", this.cityTextField.getText(), "", this.zipTextField.getText()), "NA");
             p.setAge(Integer.parseInt(this.ageTextField.getText()));
             p.setFirstName(this.firstNameTextField.getText());
             p.setLastName(this.lastNameTextField.getText());
             p.setWeight(Double.parseDouble(this.weightTextField.getText()));
             p.setHeight(Double.parseDouble(this.heightTextField.getText()));
             UserStore.getInstance().addUser(p);
-        }
-        else{
+        } else {
             //Display Error Message
         }
     }
-    
-    private boolean validatePatient(){
-      for(TextField tf : this.fieldList){
-          if(tf.getText().isEmpty() || tf.getText() == null){
-              return false;
-          }
-      }
-      if(!this.tryParseDouble(this.weightTextField.getText())){
-          return false;
-      }
-      if(!this.tryParseDouble(this.ageTextField.getText())){
-          return false;
-      }
-      if(!this.tryParseDouble(this.heightTextField.getText())){
-          return false;
-      }
-      return true;
+
+    //Validate that the patient values are of the correct type
+    private boolean validatePatient() {
+        for (TextField tf : this.fieldList) {
+            if (tf.getText().isEmpty() || tf.getText() == null) {
+                return false;
+            }
+        }
+        if (!this.tryParseDouble(this.weightTextField.getText())) {
+            return false;
+        }
+        if (!this.tryParseDouble(this.ageTextField.getText())) {
+            return false;
+        }
+        if (!this.tryParseDouble(this.heightTextField.getText())) {
+            return false;
+        }
+        return true;
     }
-    
-    public void showAddPatientUI(){
-                  try {
+
+    //Show the add patient UI
+    public void showAddPatientUI() {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/AddPatientView.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -125,27 +127,31 @@ public class AddPatientController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public void closeAddPatientUI(){
+
+    //Close the add patient UI
+    public void closeAddPatientUI() {
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }
-     //https://stackoverflow.com/questions/8391979/does-java-have-a-int-tryparse-that-doesnt-throw-an-exception-for-bad-data
-    private boolean tryParseInt(String value) {  
-     try {  
-         Integer.parseInt(value);  
-         return true;  
-      } catch (NumberFormatException e) {  
-         return false;  
-      }  
+
+    //Tries to parse an int. If there's an exception, it catches it and returns false instead.
+    //https://stackoverflow.com/questions/8391979/does-java-have-a-int-tryparse-that-doesnt-throw-an-exception-for-bad-data
+    private boolean tryParseInt(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
-    
-    private boolean tryParseDouble(String value) {  
-     try {  
-         Double.parseDouble(value);  
-         return true;  
-      } catch (NumberFormatException e) {  
-         return false;  
-      }  
+
+    //Same as above for double.
+    private boolean tryParseDouble(String value) {
+        try {
+            Double.parseDouble(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

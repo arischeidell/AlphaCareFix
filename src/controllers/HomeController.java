@@ -55,12 +55,7 @@ public class HomeController implements Initializable {
     @FXML
     private Button patientListButton;
 
-    public HomeController() {
-        System.out.println("Home Controller"); //for testing purposes
-        //this.homeView = new HomeView();
-
-    }
-
+    //Show the home UI
     public void startHomeUI() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/HomeView.fxml"));
@@ -76,15 +71,13 @@ public class HomeController implements Initializable {
         }
     }
 
+    //Close the home UI
     public void closeHomeUI() {
         Stage stage = (Stage) patientNameText.getScene().getWindow();
         stage.close();
     }
 
-    public void viewMedicalRecord() {
-        this.mrc = new MedicalRecordController();
-    }
-
+    //Log the user out and return to login screen
     @FXML
     private void onLogoutButtonAction(ActionEvent event) {
         UserStore.getInstance().clearAuthenticatedUser();
@@ -93,6 +86,7 @@ public class HomeController implements Initializable {
         lc.getLoginUI();
     }
 
+    //Show the schedule UI
     @FXML
     private void onAppointmentSchedulerButtonAction(ActionEvent event) {
         this.closeHomeUI();
@@ -100,6 +94,7 @@ public class HomeController implements Initializable {
         sc.showScheduleUI();
     }
 
+    //Show the medical record UI
     @FXML
     private void onRecordViewerButtonAction(ActionEvent event) {
         this.closeHomeUI();
@@ -107,6 +102,7 @@ public class HomeController implements Initializable {
         mc.showMedicalRecordUI();
     }
     
+    //Show the bill view UI
     @FXML
     private void onBillViewButtonAction(ActionEvent e){
        this.closeHomeUI();
@@ -114,6 +110,7 @@ public class HomeController implements Initializable {
        bc.showBillUI();            
     }
     
+    //Init components
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Patient authUser = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
@@ -123,10 +120,7 @@ public class HomeController implements Initializable {
         this.patientAddressText.setText(authUser.getAddress().toString());
     }
 
-    @FXML
-    private void editDetails(ActionEvent event) {
-    }
-
+    //View the patient list UI
     @FXML
     private void onPatientListButtonAction(ActionEvent event) {
        if(UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin()){

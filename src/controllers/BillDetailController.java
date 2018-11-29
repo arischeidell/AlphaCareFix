@@ -26,35 +26,44 @@ import models.Bill;
  *
  * @author pss5205
  */
-public class BillDetailController implements Initializable{
+public class BillDetailController implements Initializable {
 
-    @FXML private Text dateText;
-    @FXML private Text descText;
-    @FXML private Text billAmountText;
-    @FXML private Text insuranceText;
-    @FXML private Text dueText;
-    @FXML private Button backButton;
+    @FXML
+    private Text dateText;
+    @FXML
+    private Text descText;
+    @FXML
+    private Text billAmountText;
+    @FXML
+    private Text insuranceText;
+    @FXML
+    private Text dueText;
+    @FXML
+    private Button backButton;
     private Bill bill;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    private void setBill(Bill bill){
+
+    //Set the patient bill
+    private void setBill(Bill bill) {
         this.bill = bill;
         dateText.setText(this.bill.getBillDate().toString());
         descText.setText(this.bill.getItemDesc());
         billAmountText.setText(Double.toString(this.bill.getTotalCost()));
         insuranceText.setText(Double.toString(this.bill.getInsuranceCover()));
-        dueText.setText(Double.toString(this.bill.getTotalDue()));                
+        dueText.setText(Double.toString(this.bill.getTotalDue()));
     }
-    
-     public void closeBillDetailUI() {
+
+    //Close the bill detail UI
+    public void closeBillDetailUI() {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
 
+    //Show the bill detail UI
     public void showBillDetailUI(Bill bill) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/BillDetailView.fxml"));
@@ -71,8 +80,10 @@ public class BillDetailController implements Initializable{
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-      @FXML public void onBackButtonAction(ActionEvent e){
+
+    //Go back to the previous UI (BillController)
+    @FXML
+    public void onBackButtonAction(ActionEvent e) {
         this.closeBillDetailUI();
         BillController bc = new BillController();
         bc.showBillUI();

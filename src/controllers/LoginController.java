@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import models.UserStore;
 
 /**
@@ -33,7 +31,6 @@ import models.UserStore;
  * @author ariannascheidell
  */
 public class LoginController implements Initializable {
-
 
     private HomeController homeController;
     @FXML
@@ -49,17 +46,7 @@ public class LoginController implements Initializable {
     @FXML
     private Button newUserButton;
 
-
-
-//    public boolean authenticate(String username, char[] pw) {
-//        boolean auth = ul.authenticate(username, pw);
-//        if (auth) {
-//            homeController = new HomeController();
-//            return true;
-//        } else { //incorrect username/password, try again
-//            return false;
-//        }
-//    }
+    //Display testing credentials. Remove before production!!!
     @FXML
     private void onForgotPasswordButtonAction(ActionEvent event) {
         //Call forgot password button controller and launch new UI
@@ -70,6 +57,8 @@ public class LoginController implements Initializable {
         alert.showAndWait();
     }
 
+    //Display a message that user needs to contact their physician to be added.
+    //On the admin side, users can be added
     @FXML
     private void onNewUserButtonAction(ActionEvent event) {
         //Call new user ui and launch new UI
@@ -80,6 +69,7 @@ public class LoginController implements Initializable {
         alert.showAndWait();
     }
 
+    //Attempt to login
     @FXML
     private void onLoginButtonAction(ActionEvent event) {
 
@@ -90,11 +80,11 @@ public class LoginController implements Initializable {
             requestHomeController();
         } else {
             this.loginFailedText.setVisible(true);
-//            System.out.println("Login Failed");
         }
 
     }
 
+    //Show home UI
     private void requestHomeController() {
         System.out.println("Home Controller Started");
         homeController = new HomeController();
@@ -102,6 +92,7 @@ public class LoginController implements Initializable {
 
     }
 
+    //init components
     @Override
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -111,6 +102,7 @@ public class LoginController implements Initializable {
 
     }
 
+    //show login UI
     public void getLoginUI() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/LoginView.fxml"));

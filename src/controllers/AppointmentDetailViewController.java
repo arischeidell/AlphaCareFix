@@ -54,12 +54,13 @@ public class AppointmentDetailViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          physicianComboBox.setItems(FXCollections.observableArrayList(
+        physicianComboBox.setItems(FXCollections.observableArrayList(
                 "Haynes, Steven D.O.", "Lipniskis, Jeffery M.D.", "Jobs, Steven P.A.", "Murphy, Alison M.D.")
         );
-    }    
+    }
     
-      public void showAppointmentDetailUI(ScheduleTableEntry ste) {
+    //Show the appointment detail UI
+    public void showAppointmentDetailUI(ScheduleTableEntry ste) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/AppointmentDetailView.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -69,28 +70,29 @@ public class AppointmentDetailViewController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.show();
             AppointmentDetailViewController apdvc = fxmlLoader.getController();
-//            mrevc.setUser(u);
             apdvc.setAppointmentDetails(ste);
         } catch (IOException ex) {
             Logger.getLogger(AppointmentDetailViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
-     public void setAppointmentDetails(ScheduleTableEntry ste){
-         patientText.setText(ste.getUser().getLastName() + ", " + ste.getUser().getFirstName());
-         this.reasonTextArea.setText(ste.getAppointmentDescription());
-         this.physicianComboBox.setValue(ste.getPhysicianName());
-         this.resolutionTextArea.setText(ste.getAppointmentResolution());
-         this.currentAppointment = ste;
-         this.dateText.setText(ste.getAppointmentDate());
-     }
 
+    //Show the details of the appointment
+    public void setAppointmentDetails(ScheduleTableEntry ste) {
+        patientText.setText(ste.getUser().getLastName() + ", " + ste.getUser().getFirstName());
+        this.reasonTextArea.setText(ste.getAppointmentDescription());
+        this.physicianComboBox.setValue(ste.getPhysicianName());
+        this.resolutionTextArea.setText(ste.getAppointmentResolution());
+        this.currentAppointment = ste;
+        this.dateText.setText(ste.getAppointmentDate());
+    }
+
+    //Called when the save button is pressed
     @FXML
     private void onSaveButtonAction(ActionEvent event) {
         this.currentAppointment.setPhysicianName(physicianComboBox.getValue().toString());
         this.currentAppointment.setAppointmentResolution(this.resolutionTextArea.getText());
         AppointmentStore.getInstance().saveScheduleTableEntryList();
-        Stage s = (Stage)resolutionTextArea.getScene().getWindow();
+        Stage s = (Stage) resolutionTextArea.getScene().getWindow();
         s.close();
     }
 }

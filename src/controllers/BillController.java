@@ -34,20 +34,26 @@ import models.Bill;
  *
  * @author pss5205
  */
-public class BillController implements Initializable{
+public class BillController implements Initializable {
 
     private ObservableList<Bill> obsBillList;
-    @FXML private Button homeButton;
-    @FXML private TableView billTableView;
-    @FXML private TableColumn<Bill, Date> dateTableColumn;
-    @FXML private TableColumn<Bill, String> itemTableColumn;
-    @FXML private TableColumn<Bill, Double> costTableColumn;
-    @FXML private TableColumn<Bill, Double> insuranceTableColumn;
-    @FXML private TableColumn<Bill, Double> dueTableColumn;
-    
+    @FXML
+    private Button homeButton;
+    @FXML
+    private TableView billTableView;
+    @FXML
+    private TableColumn<Bill, Date> dateTableColumn;
+    @FXML
+    private TableColumn<Bill, String> itemTableColumn;
+    @FXML
+    private TableColumn<Bill, Double> costTableColumn;
+    @FXML
+    private TableColumn<Bill, Double> insuranceTableColumn;
+    @FXML
+    private TableColumn<Bill, Double> dueTableColumn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         ArrayList<Bill> billList = new ArrayList<>();
         billList.add(new Bill(new Date(), "Vaccine", 121.40, 100.00));
         billList.add(new Bill(new Date(), "Checkup", 250, 200));
@@ -60,12 +66,13 @@ public class BillController implements Initializable{
         dueTableColumn.setCellValueFactory(new PropertyValueFactory<>("totalDue"));
     }
     
-    
-     public void closeBillUI() {
+    //Close the Bill UI
+    public void closeBillUI() {
         Stage stage = (Stage) homeButton.getScene().getWindow();
         stage.close();
     }
 
+    //Show the Bill UI
     public void showBillUI() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/BillView.fxml"));
@@ -81,15 +88,19 @@ public class BillController implements Initializable{
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    @FXML public void onBillTableViewMouseClick(MouseEvent me){
+
+    //When the table is clicked, show the detail for that row
+    @FXML
+    public void onBillTableViewMouseClick(MouseEvent me) {
         Bill currentlySelectedBill = (Bill) this.billTableView.getSelectionModel().getSelectedItem();
         BillDetailController bdc = new BillDetailController();
         bdc.showBillDetailUI(currentlySelectedBill);
         //bdc.setBill(currentlySelectedBill);
     }
-    
-    @FXML public void onHomeButtonAction(ActionEvent e){
+
+    //Go to the home screen
+    @FXML
+    public void onHomeButtonAction(ActionEvent e) {
         this.closeBillUI();
         HomeController homeController = new HomeController();
         homeController.startHomeUI();

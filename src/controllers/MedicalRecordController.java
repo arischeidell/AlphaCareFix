@@ -84,6 +84,7 @@ public class MedicalRecordController implements Initializable {
     @FXML
     private Text chickenBoxDateText;
 
+    //init components
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("MedicalRecordController");
@@ -111,11 +112,13 @@ public class MedicalRecordController implements Initializable {
         visitTableView.setItems(this.scheduledTableList);
     }
 
+    //close the medical record UI
     public void closeMedicalRecordUI() {
         Stage stage = (Stage) nameText.getScene().getWindow();
         stage.close();
     }
 
+    //show the medical record UI
     public void showMedicalRecordUI() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordView.fxml"));
@@ -132,6 +135,7 @@ public class MedicalRecordController implements Initializable {
         }
     }
 
+    //Show the medical record UI for a specific patient
     public void showMedicalRecordUI(Patient p) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MedicalRecordView.fxml"));
@@ -151,6 +155,7 @@ public class MedicalRecordController implements Initializable {
         }
     }
 
+    //Set patient values
     public void setPatient(Patient p) {
         this.ageValueText.setText(Integer.toString(p.getAge()));
         this.weightValueText.setText(Double.toString(p.getWeight()));
