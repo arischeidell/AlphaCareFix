@@ -34,6 +34,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.AppointmentStore;
 import models.Patient;
 import models.UserStore;
@@ -60,6 +61,8 @@ public class ScheduleController implements Initializable {
     private TableView<ScheduleTableEntry> scheduledTable;
     @FXML
     private ChoiceBox timeSelect;
+    @FXML
+    private Button homeButton;
 
     @FXML
     private void onPhysicianSelect(ActionEvent event) {
@@ -143,6 +146,7 @@ public class ScheduleController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("AlphaCare");
             stage.setScene(new Scene(root1));
             stage.show();
@@ -157,5 +161,6 @@ public class ScheduleController implements Initializable {
         HomeController homeController = new HomeController();
         homeController.startHomeUI();
     }
+
 
 }
