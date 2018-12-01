@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Class: AddPatientController
+ * This class is accessible from the edit medical records view.
+ * It allows a doctor or admin to add a patient to their list. 
+
  */
 package controllers;
 

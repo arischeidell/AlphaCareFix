@@ -89,6 +89,8 @@ public class MedicalRecordEditViewController implements Initializable {
     private ObservableList<ScheduleTableEntry> scheduledTableList;
     @FXML
     private TableColumn<ScheduleTableEntry, Boolean> prognosisColumn;
+    @FXML
+    private Button logoutButton;
 
     /**
      * Initializes the controller class.
@@ -172,6 +174,7 @@ public class MedicalRecordEditViewController implements Initializable {
         datePickerList.add(mmrDatePicker);
         datePickerList.add(tetanusDatePicker);
         datePickerList.add(chickenPoxDatePicker);
+        
         for (DatePicker dp : datePickerList) {
             if (dp.getValue().getYear() == 1900) {
                 dp.setValue(null);
@@ -302,5 +305,9 @@ public class MedicalRecordEditViewController implements Initializable {
     @FXML
     private void onVisitTableViewSort(SortEvent event) {
         this.visitTableView.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    private void goHome(ActionEvent event) {
     }
 }

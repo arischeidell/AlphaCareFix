@@ -37,11 +37,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private Text patientNameText;
-    @FXML
     private Text patientAddressText;
-    @FXML
     private Text patientPhoneText;
-    @FXML
     private Text currentDateText;
     @FXML
     private Button recordViewerButton;
@@ -116,9 +113,6 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Patient authUser = (Patient) UserStore.getInstance().getCurrentlyAuthenticatedUser();
         this.patientNameText.setText(authUser.getUsername());
-        this.currentDateText.setText(LocalDate.now().toString());
-        this.patientPhoneText.setText(authUser.getPhone());
-        this.patientAddressText.setText(authUser.getAddress().toString());
         //prevents nonadmins from seeing patient list and editing medical records
         if(!(UserStore.getInstance().getCurrentlyAuthenticatedUser().isAdmin())){
             this.patientListButton.setVisible(false);

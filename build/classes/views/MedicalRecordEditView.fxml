@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,20 +10,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicalRecordEditViewController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicalRecordEditViewController">
     <children>
-        <AnchorPane id="AnchorPane" layoutY="41.0" prefHeight="415.0" prefWidth="611.0">
+        <AnchorPane id="AnchorPane" layoutY="200.0" prefHeight="400.0" prefWidth="800.0">
             <children>
                 <Text fx:id="nameText" layoutX="27.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" underline="true" />
                 <Text fx:id="ageText" layoutX="27.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:" underline="true" />
                 <Text fx:id="heightText" layoutX="254.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height:" underline="true" />
                 <Text fx:id="weightText" layoutX="252.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight:" underline="true" />
-                <Line endX="443.5" endY="-52.0" layoutX="168.0" layoutY="144.0" startX="-168.0" startY="-52.0" />
+                <Line endX="631.0" endY="-52.0" layoutX="168.0" layoutY="144.0" startX="-168.0" startY="-52.0" />
                 <Text layoutX="27.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccines" />
                 <GridPane hgap="5.0" layoutX="27.0" layoutY="124.0" prefHeight="54.0" prefWidth="548.0">
                     <columnConstraints>
@@ -48,14 +50,14 @@
                   <DatePicker fx:id="chickenPoxDatePicker" disable="true" onAction="#onChickenPoxDatePickerAction" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
-                <Line endX="433.0" endY="37.0" layoutX="178.0" layoutY="154.0" startX="-178.0" startY="37.0" />
-                <Text fx:id="visitText" layoutX="27.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visits" />
+                <Line endX="619.0" endY="37.0" layoutX="178.0" layoutY="154.0" startX="-178.0" startY="37.0" />
+                <Text fx:id="visitText" layoutX="366.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visits" />
                 <TextField fx:id="nameField" layoutX="74.0" layoutY="20.0" />
                 <TextField fx:id="ageField" layoutX="74.0" layoutY="53.0" />
-                <TextField fx:id="heightField" layoutX="306.0" layoutY="20.0" />
-                <TextField fx:id="weightField" layoutX="306.0" layoutY="53.0" />
-                <Button fx:id="saveButton" layoutX="542.0" layoutY="53.0" mnemonicParsing="false" onAction="#onSaveButtonAction" text="Save" />
-            <TableView fx:id="visitTableView" layoutX="26.0" layoutY="216.0" onMouseClicked="#onVisitTableViewClick" onSort="#onVisitTableViewSort" prefHeight="171.0" prefWidth="559.0">
+                <TextField fx:id="heightField" layoutX="312.0" layoutY="20.0" />
+                <TextField fx:id="weightField" layoutX="312.0" layoutY="53.0" />
+                <Button fx:id="saveButton" layoutX="649.0" layoutY="29.0" mnemonicParsing="false" onAction="#onSaveButtonAction" prefHeight="39.0" prefWidth="61.0" styleClass="button2" stylesheets="@../resources/homestyle.css" text="Save" textFill="WHITE" />
+            <TableView fx:id="visitTableView" layoutX="26.0" layoutY="216.0" onMouseClicked="#onVisitTableViewClick" onSort="#onVisitTableViewSort" prefHeight="175.0" prefWidth="762.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="Date">
                      <cellValueFactory>
@@ -77,10 +79,17 @@
             </TableView>
             </children>
         </AnchorPane>
-        <Text layoutX="160.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Medical Record">
-            <font>
-                <Font size="31.0" />
-            </font>
-        </Text>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="800.0" style="-fx-background-color: #6747CD;" />
+      <Label layoutX="89.0" layoutY="46.0" text="AlphaCare" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="165.0" layoutY="104.0" text="Edit Medical Record" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="logoutButton" layoutX="648.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goHome" prefHeight="45.0" prefWidth="139.0" styleClass="button2" stylesheets="@../resources/homestyle.css" text="Home" textFill="WHITE" />
     </children>
 </AnchorPane>
